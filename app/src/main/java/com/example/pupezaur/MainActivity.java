@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         JSONObject message = new JSONObject();
         String name = UserUtil.name;
         EditText chatBox = findViewById(R.id.text_send);
-        TextView chat = findViewById(R.id.chat);
+        TextView chat = findViewById(R.id.right_chat);
         try {
             message.put("name", name);
             message.put("message", chatBox.getText());
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                TextView chat = findViewById(R.id.chat);
+                TextView chat = findViewById(R.id.left_chat);
                 chat.append(socketEventHandler.getPersonName() + ": "+socketEventHandler.getMessage() + "\n");
             }
         });

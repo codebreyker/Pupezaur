@@ -6,6 +6,7 @@
     android:layout_height="wrap_content">
 
     <TextView
+        android:id="@+id/left_chat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
@@ -13,7 +14,6 @@
         android:padding="8dp"
         android:textSize="18dp"
         android:textColor="#fff"
-        android:background="@drawable/background_message_left"
-        android:id="@+id/show_message"/>
+        android:background="@drawable/background_message_left" />
 
 </RelativeLayout>
