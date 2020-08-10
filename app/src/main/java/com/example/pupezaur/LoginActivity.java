@@ -23,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+//sdgsdfgsdfgsfsfghghjmdgfasdgbm,ncnbfdagdfmbnvmdfs
+
 public class LoginActivity extends AppCompatActivity {
     MaterialEditText email, password, username;
     Button btn_login;
