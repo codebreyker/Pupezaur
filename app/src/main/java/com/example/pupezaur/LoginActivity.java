@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
 
 //      aici e un comment de test :D - Bogdan
 
+
         auth = FirebaseAuth.getInstance();
 
         username = findViewById(R.id.usermane);
