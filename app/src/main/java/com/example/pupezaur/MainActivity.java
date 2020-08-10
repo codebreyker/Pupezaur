@@ -66,9 +66,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void send(View view) {
         JSONObject message = new JSONObject();
-        String name = UserUtil.name;
+        String name = UserUtil.getName();
         EditText chatBox = findViewById(R.id.text_send);
-        TextView chat = findViewById(R.id.right_chat);
+        TextView chat = findViewById(R.id.chat);
         try {
             message.put("name", name);
             message.put("message", chatBox.getText());
