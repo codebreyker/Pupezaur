@@ -14,14 +14,12 @@ import com.example.pupezaur.R;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-import static java.util.Calendar.DAY_OF_WEEK;
-
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Fragment1#newInstance} factory method to
+ * Use the {@link ScheduleFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment1 extends Fragment {
+public class ScheduleFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,7 +30,7 @@ public class Fragment1 extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Fragment1() {
+    public ScheduleFragment() {
         // Required empty public constructor
     }
 
@@ -45,8 +43,8 @@ public class Fragment1 extends Fragment {
      * @return A new instance of fragment Fragment1.
      */
     // TODO: Rename and change types and number of parameters
-    public static Fragment1 newInstance(String param1, String param2) {
-        Fragment1 fragment = new Fragment1();
+    public static ScheduleFragment newInstance(String param1, String param2) {
+        ScheduleFragment fragment = new ScheduleFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

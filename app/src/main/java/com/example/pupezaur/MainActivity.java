@@ -5,24 +5,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.pupezaur.Util.Chat;
-import com.example.pupezaur.Util.Message;
 import com.example.pupezaur.Util.MessageAdaptor;
 import com.example.pupezaur.Util.UserUtil;
 import com.example.pupezaur.connections.ConnectionHandler;
 import com.example.pupezaur.connections.SocketEventHandler;
-import com.example.pupezaur.ui.main.ChatActivity;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -36,11 +28,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -49,8 +36,7 @@ public class MainActivity extends AppCompatActivity {
     ConnectionHandler connectionHandler;
     static SocketEventHandler socketEventHandler;
 
-    ImageButton btn_send;
-    EditText text_send;
+
     Intent intent;
     MessageAdaptor messageAdaptor;
     List<Chat> mChat;
@@ -78,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_view);
 //        recyclerView.setHasFixedSize(true);
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-//        linearLayoutManager.setStackFromEnd(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        linearLayoutManager.setStackFromEnd(true);
 //        recyclerView.setLayoutManager(linearLayoutManager);
 
         intent = getIntent();
@@ -98,23 +84,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        btn_send = findViewById(R.id.btn_send);
-        text_send = findViewById(R.id.text_send);
-
-//        btn_send.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String msg = text_send.getText().toString();
-//                if (!msg.equals("")) {
-//                    sendMessage(firebaseUser.getUid(), userid, msg);
-//                } else {
-//                    Toast.makeText(MainActivity.this, "You can't send empty message", Toast.LENGTH_SHORT).show();
-//                }
-//                text_send.setText("");
-//            }
-//        });
-
 
 }
 
@@ -136,45 +105,37 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void sendMessage(String sender, String receiver, String message) {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-        HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("sender", sender);
-        hashMap.put("receiver", receiver);
-        hashMap.put("message", message);
-    }
+//    public void updateMessage(){
+//        runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                TextView chat = findViewById(R.id.show_message);
+//                chat.append(socketEventHandler.getPersonName() + ": "+socketEventHandler.getMessage() + "\n");
+//            }
+//        });
+//    }
 
-    public void updateMessage(){
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                TextView chat = findViewById(R.id.left_chat);
-                chat.append(socketEventHandler.getPersonName() + ": "+socketEventHandler.getMessage() + "\n");
-            }
-        });
-    }
-
-    private void readMessages (final String myid, final String userid) {
-        mChat = new ArrayList<>();
-        dbreference = FirebaseDatabase.getInstance().getReference("Chats");
-        dbreference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                mChat.clear();
-                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    Chat chat = snapshot1.getValue(Chat.class);
-                    if (chat.getReceiver().equals(myid) || chat.getSender().equals(userid) ||
-                            chat.getReceiver().equals(userid) || chat.getSender().equals(myid)) {
-                        mChat.add(chat);
-                    }
-                }
-                messageAdaptor = new MessageAdaptor(MainActivity.this, mChat);
-                recyclerView.setAdapter(messageAdaptor);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-    }
+//    private void readMessages (final String myid, final String userid) {
+//        mChat = new ArrayList<>();
+//        dbreference = FirebaseDatabase.getInstance().getReference("Chats");
+//        dbreference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                mChat.clear();
+//                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+//                    Chat chat = snapshot1.getValue(Chat.class);
+//                    if (chat.getReceiver().equals(myid) || chat.getSender().equals(userid) ||
+//                            chat.getReceiver().equals(userid) || chat.getSender().equals(myid)) {
+//                        mChat.add(chat);
+//                    }
+//                }
+//                messageAdaptor = new MessageAdaptor(MainActivity.this, mChat);
+//                recyclerView.setAdapter(messageAdaptor);
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//            }
+//        });
+//    }
 
 }

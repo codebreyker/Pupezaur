@@ -2,15 +2,11 @@ package com.example.pupezaur.ui.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.pupezaur.R;
@@ -56,9 +52,9 @@ public class PlaceholderFragment extends Fragment {
                 break;
 
             case 2:
-                rootView = inflater.inflate(R.layout.frag2_layout, container, false);
+                rootView = inflater.inflate(R.layout.fragment_message, container, false);
                 break;        }
-        rootView = inflater.inflate(R.layout.fragment_main, container, false);
+//        rootView = inflater.inflate(R.layout.fragment_message, container, false);
 
         return rootView;
     }

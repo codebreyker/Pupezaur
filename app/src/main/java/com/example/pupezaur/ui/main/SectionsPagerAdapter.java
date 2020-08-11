@@ -32,10 +32,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new Fragment1();
+                fragment = new ScheduleFragment();
                 break;
             case 1:
-                fragment = new ChatActivity();
+                fragment = new ChatFragment();
                 break;
 
         }

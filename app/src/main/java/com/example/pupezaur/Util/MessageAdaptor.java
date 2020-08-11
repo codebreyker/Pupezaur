@@ -8,9 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pupezaur.MainActivity;
+import com.example.pupezaur.MessageActivity;
 import com.example.pupezaur.R;
-import com.example.pupezaur.ui.main.ChatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -22,11 +21,14 @@ import java.util.List;
 
         private List<Chat> mChat;
         private Context mContext;
-        FirebaseUser firebaseUser;
+        private String username;
+        FirebaseUser fuser;
 
-    public MessageAdaptor(MainActivity mContext, List<Chat> mChat) {
+
+    public MessageAdaptor(MessageActivity mContext, List<Chat> mChat, String username) {
         this.mChat = mChat;
         this.mContext = mContext;
+        this.username = username;
         }
 
     @NonNull
@@ -46,7 +48,7 @@ import java.util.List;
     public void onBindViewHolder(@NonNull MessageAdaptor.ViewHolder holder, int position) {
 
         Chat chat = mChat.get(position);
-        holder.chat.setText(chat.getMessage());
+        holder.show_message.setText(chat.getMessage());
 
     }
 
@@ -56,18 +58,18 @@ import java.util.List;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView chat;
+        public TextView show_message;
 
         public ViewHolder (View itemView) {
             super (itemView);
-            chat = itemView.findViewById(R.id.recycler_view);
+            show_message = itemView.findViewById(R.id.show_message);
         }
     }
 
     @Override
         public int getItemViewType(int position) {
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-            if (mChat.get(position).getSender().equals(firebaseUser.getUid())){
+        fuser = FirebaseAuth.getInstance().getCurrentUser();
+            if (mChat.get(position).getSender().equals(fuser.getUid())){
                 return MSG_TYPE_RIGHT;
             } else {
                 return MSG_TYPE_LEFT;
