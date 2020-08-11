@@ -31,16 +31,16 @@ public class LoginActivity extends AppCompatActivity {
     public String name;
     FirebaseUser firebaseUser;
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        if (firebaseUser != null) {
-//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//            startActivity(intent);
-//            FirebaseUser currentUser = auth.getCurrentUser();
-//            finish();
-//        }
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (firebaseUser != null) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            FirebaseUser currentUser = auth.getCurrentUser();
+            finish();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +53,14 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent (LoginActivity.this, MainActivity.class);
             startActivity(intent);
         }
-//        else {
-//            setContentView(R.layout.activity_login);
-////            username = findViewById(R.id.username);
-////            email = findViewById(R.id.email);
-////            password = findViewById(R.id.password);
-////            btn_login = findViewById(R.id.btn_login);
-//            reference = FirebaseDatabase.getInstance().getReference().child("Users");
-//        }
+        else {
+            setContentView(R.layout.activity_login);
+            username = findViewById(R.id.username);
+            email = findViewById(R.id.email);
+            password = findViewById(R.id.password);
+            btn_login = findViewById(R.id.btn_login);
+            reference = FirebaseDatabase.getInstance().getReference().child("Users");
+        }
 
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);

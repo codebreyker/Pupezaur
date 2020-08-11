@@ -62,28 +62,10 @@ public class MainActivity extends AppCompatActivity {
         socketEventHandler = new SocketEventHandler(connectionHandler, this);
         socketEventHandler.doSocketEvents();
 
-        recyclerView = findViewById(R.id.recycler_view);
 //        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        linearLayoutManager.setStackFromEnd(true);
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+//        linearLayoutManager.setStackFromEnd(true);
 //        recyclerView.setLayoutManager(linearLayoutManager);
-
-        intent = getIntent();
-        final String userid = intent.getStringExtra("userid");
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        dbreference = FirebaseDatabase.getInstance().getReference("Users").child("userid");
-        dbreference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                UserUtil user = (UserUtil) snapshot.getValue();
-                username.setText(user.getName());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
 }
 
