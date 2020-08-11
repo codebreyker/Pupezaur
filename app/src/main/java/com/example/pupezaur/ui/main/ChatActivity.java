@@ -13,10 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pupezaur.R;
+import com.example.pupezaur.Util.MessageAdaptor;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,47 +39,12 @@ public class ChatActivity extends Fragment {
 
     ImageButton btn_send;
     EditText text_send;
+    RecyclerView recycler_view;
 
 
     public ChatActivity() {
-        btn_send = btn_send.findViewById(R.id.btn_send);
-        text_send = text_send.findViewById(R.id.text_send);
 
-        RecyclerView recyclerView;
-
-        FirebaseUser firebaseUser;
-        DatabaseReference reference;
-        MessageAdaptor messageAdaptor;
-
-
-        //        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setStackFromEnd(true);
-//        recyclerView.setLayoutManager(linearLayoutManager);
-
-        intent = Intent.getIntent();
-        final String userid = intent.getStringExtra("userid");
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
-
-
-
-        ImageButton button = btn_send.findViewById(R.id.btn_send);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View view) {
-                String msg = text_send.getText().toString();
-                if (!msg.equals("")) {
-                    sendMessage(firebaseUser.getUid(), userid, msg);
-                } else {
-                    Toast.makeText(ChatActivity.this, "You can't send empty message", Toast.LENGTH_SHORT).show();
-                }
-                text_send.setText("");
-            }
-        });
-
-
-    }
+        }
 
     /**
      * Use this factory method to create a new instance of
@@ -96,14 +64,20 @@ public class ChatActivity extends Fragment {
         return fragment;
     }
 
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
-//    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+        RecyclerView recyclerView = recycler_view.findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
     }
+
+}
 
 
