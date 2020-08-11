@@ -4,15 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FAFAFA"
-    tools:context=".ui.main.Fragment2">
+    tools:context=".ui.main.ChatActivity">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </androidx.recyclerview.widget.RecyclerView>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,13 +18,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/chat"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:textSize="30px"
-                android:textStyle="italic"
-                android:typeface="serif" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
         </LinearLayout>
     </ScrollView>
 
@@ -53,8 +46,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/ic_send_btn"
-        android:onClick="send"
-        />
+        android:background="@drawable/ic_send_btn" />
 
 </RelativeLayout>

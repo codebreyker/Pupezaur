@@ -35,7 +35,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 fragment = new Fragment1();
                 break;
             case 1:
-                fragment = new Fragment2();
+                fragment = new ChatActivity();
                 break;
 
         }

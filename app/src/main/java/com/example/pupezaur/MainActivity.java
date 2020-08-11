@@ -6,30 +6,49 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.pupezaur.Util.Chat;
 import com.example.pupezaur.Util.UserUtil;
 import com.example.pupezaur.connections.ConnectionHandler;
 import com.example.pupezaur.connections.SocketEventHandler;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.pupezaur.ui.main.SectionsPagerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity  {
 
     ConnectionHandler connectionHandler;
-    SocketEventHandler socketEventHandler;
+    static SocketEventHandler socketEventHandler;
 
-    @Override
+    Intent intent;
+
+    FirebaseUser firebaseUser;
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -40,10 +59,20 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
         connectionHandler = new ConnectionHandler();
         connectionHandler.connectSocket();
-        socketEventHandler = new SocketEventHandler(connectionHandler,this);
+        socketEventHandler = new SocketEventHandler(connectionHandler, this);
         socketEventHandler.doSocketEvents();
+
+//        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        linearLayoutManager.setStackFromEnd(true);
+//        recyclerView.setLayoutManager(linearLayoutManager);
+
+        intent = getIntent();
+        final String userid = intent.getStringExtra("userid");
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     @Override
@@ -64,42 +93,5 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected (item);
     }
 
-    public void send(View view) {
-        JSONObject message = new JSONObject();
-        String name = UserUtil.getName();
-        EditText chatBox = findViewById(R.id.text_send);
-        TextView chat = findViewById(R.id.chat);
-        try {
-            message.put("name", name);
-            message.put("message", chatBox.getText());
-            if(message.get("message").toString().equals("") || message.get("message").toString().isEmpty()){
-                return;
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        chat.append(name + ": "+ chatBox.getText() + "\n");
-        connectionHandler.getSocket().emit("sendMessage", message);
-    }
 
-    public void updateMessage(){
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                TextView chat = findViewById(R.id.left_chat);
-                chat.append(socketEventHandler.getPersonName() + ": "+socketEventHandler.getMessage() + "\n");
-            }
-        });
-    }
-
-    public boolean logout (@org.jetbrains.annotations.NotNull Button button) {
-        switch (button.getId()) {
-            case R.id.btn_logout:
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                finish();
-                return true;
-        }
-        return false;
-    }
 }

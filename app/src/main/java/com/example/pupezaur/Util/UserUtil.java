@@ -28,4 +28,13 @@ public class UserUtil {
     public void setId(String id) {
         UserUtil.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "User(" +
+                "id=' " + id + '\'' +
+                ", name=' " + name + '\'' +
+                ')';
+    }
 }
+

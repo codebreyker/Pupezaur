@@ -23,35 +23,49 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-//sdgsdfgsdfgsfsfghghjmdgfasdgbm,ncnbfdagdfmbnvmdfs
-
 public class LoginActivity extends AppCompatActivity {
     MaterialEditText email, password, username;
     Button btn_login;
     FirebaseAuth auth;
+    DatabaseReference reference;
     public String name;
     FirebaseUser firebaseUser;
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (firebaseUser != null) {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-            FirebaseUser currentUser = auth.getCurrentUser();
-            finish();
-        }
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if (firebaseUser != null) {
+//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//            startActivity(intent);
+//            FirebaseUser currentUser = auth.getCurrentUser();
+//            finish();
+//        }
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+        auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null){
+            Intent intent = new Intent (LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+//        else {
+//            setContentView(R.layout.activity_login);
+////            username = findViewById(R.id.username);
+////            email = findViewById(R.id.email);
+////            password = findViewById(R.id.password);
+////            btn_login = findViewById(R.id.btn_login);
+//            reference = FirebaseDatabase.getInstance().getReference().child("Users");
+//        }
+
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("LogIn");
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-//      aici e un comment de test :D - Bogdan
 
         auth = FirebaseAuth.getInstance();
 

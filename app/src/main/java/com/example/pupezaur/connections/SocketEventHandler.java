@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import com.example.pupezaur.MainActivity;
 import com.example.pupezaur.R;
+import com.example.pupezaur.Util.Chat;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,19 +48,19 @@ public class SocketEventHandler {
 
             }
         });
-        connectionHandler.getSocket().on("newMessage", new Emitter.Listener() {
-            @Override
-            public void call(Object... objects) {
-                JSONObject data = (JSONObject) objects[0] ;
-                try {
-                    personName = data.getString("name");
-                    message  = data.getString("message");
-                    mainActivity.updateMessage();
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+//        connectionHandler.getSocket().on("newMessage", new Emitter.Listener() {
+//            @Override
+//            public void call(Object... objects) {
+//                JSONObject data = (JSONObject) objects[0] ;
+//                try {
+//                    personName = data.getString("name");
+//                    message  = data.getString("message");
+//                    MainActivity.updateMessage();
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
     }
 }
