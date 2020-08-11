@@ -102,18 +102,18 @@ public class MainActivity extends AppCompatActivity {
         btn_send = findViewById(R.id.btn_send);
         text_send = findViewById(R.id.text_send);
 
-        btn_send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String msg = text_send.getText().toString();
-                if (!msg.equals("")) {
-                    sendMessage(firebaseUser.getUid(), userid, msg);
-                } else {
-                    Toast.makeText(MainActivity.this, "You can't send empty message", Toast.LENGTH_SHORT).show();
-                }
-                text_send.setText("");
-            }
-        });
+//        btn_send.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String msg = text_send.getText().toString();
+//                if (!msg.equals("")) {
+//                    sendMessage(firebaseUser.getUid(), userid, msg);
+//                } else {
+//                    Toast.makeText(MainActivity.this, "You can't send empty message", Toast.LENGTH_SHORT).show();
+//                }
+//                text_send.setText("");
+//            }
+//        });
 
 
 }
