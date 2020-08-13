@@ -52,7 +52,7 @@ public class PlaceholderFragment extends Fragment {
                 break;
 
             case 2:
-                rootView = inflater.inflate(R.layout.frag2_layout, container, false);
+                rootView = inflater.inflate(R.layout.activity_message, container, false);
                 break;        }
 //        rootView = inflater.inflate(R.layout.fragment_message, container, false);
 

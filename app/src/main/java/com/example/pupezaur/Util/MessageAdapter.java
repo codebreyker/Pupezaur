@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pupezaur.R;
@@ -30,6 +31,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageA
     List<Message> messageList;
     DatabaseReference reference;
     FirebaseUser fuser;
+    RecyclerView recycler_view;
 
     public MessageAdapter(android.content.Context context, List<Message> messageList, List<Chat> mChat, DatabaseReference reference) {
         this.context = context;
@@ -41,13 +43,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageA
     @NonNull
     @Override
     public MessageAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == MSG_TYPE_RIGHT) {
+//        if (viewType == MSG_TYPE_RIGHT) {
             View view = LayoutInflater.from(context).inflate(R.layout.chat_item_right, parent, false);
             return new MessageAdapterViewHolder(view);
-        } else {
-            View view = LayoutInflater.from(context).inflate(R.layout.chat_item_left, parent, false);
-            return new MessageAdapterViewHolder(view);
-        }
+//        } else {
+//            View view = LayoutInflater.from(context).inflate(R.layout.chat_item_left, parent, false);
+//            return new MessageAdapterViewHolder(view);
+//        }
     }
 
     @Override

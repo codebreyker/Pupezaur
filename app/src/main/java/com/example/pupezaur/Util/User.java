@@ -1,25 +1,25 @@
 package com.example.pupezaur.Util;
 
 public class User {
-     String uid;
-     String name, email;
+     String id;
+     String username, email;
 
     public User(){}
 
     public String getUid() {
-        return uid;
+        return id;
     }
 
     public void setUid(String uid) {
-        this.uid = uid;
+        this.id = uid;
     }
 
     public String getName() {
-        return name;
+        return username;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
     }
 
     public String getEmail() {return email;}
@@ -28,9 +28,9 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "uid='" + uid + '\'' +
-                ", name='" + name + '\'' +
+        return "Users{" +
+                "uid='" + id + '\'' +
+                ", name='" + username + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }

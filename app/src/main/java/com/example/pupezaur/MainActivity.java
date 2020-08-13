@@ -7,10 +7,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.pupezaur.Util.Chat;
+import com.example.pupezaur.Util.Message;
+import com.example.pupezaur.Util.MessageAdapter;
 import com.example.pupezaur.Util.User;
+import com.example.pupezaur.ui.main.MessageActivity;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.pupezaur.ui.main.SectionsPagerAdapter;
@@ -23,12 +29,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
-    TextInputEditText email, password;
+    RecyclerView recycler_view;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,10 +88,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    public void LoginUser (View v) {
-
-    }
-
 
 }
