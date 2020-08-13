@@ -6,56 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".MessageActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/text_send"
-        android:layout_marginBottom="-2dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/chat"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:textSize="30px"
-                android:textStyle="italic"
-                android:typeface="serif"
-                android:autofillHints="@string/action_sign_in"/>
-
-        </LinearLayout>
-    </ScrollView>
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recycler_view"
-       android:layout_above="@id/bottom"/>
-
-    <EditText
-        android:id="@+id/text_send"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
         android:layout_alignParentBottom="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="-4dp"
-        android:layout_toLeftOf="@id/btn_send"
-        android:hint="Type a message"
-        android:layout_marginEnd="-4dp"
-        android:autofillHints="" />
-
-    <ImageButton
-        android:id="@+id/btn_send"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/ic_send_btn" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="45dp"
+        android:id="@+id/recycler_view"/>
 
     <TextView
         android:id="@+id/username"
@@ -67,4 +25,38 @@
         android:textSize="18dp"
         android:textStyle="bold" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:paddingTop="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/text_send"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_weight="1"
+                android:layout_toLeftOf="@id/btn_send"
+                android:autofillHints=""
+                android:hint="Type a message" />
+
+    <ImageButton
+        android:id="@+id/btn_send"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/ic_send_btn" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 </RelativeLayout>

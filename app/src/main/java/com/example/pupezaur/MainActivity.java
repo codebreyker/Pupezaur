@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference dbreference;
     FirebaseDatabase database;
     EditText username;
+    FirebaseAuth auth;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +84,12 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
             return false;
+        }
+
+        if(item.getItemId() == R.id.logout) {
+            auth.signOut();
+            finish();
+            startActivity((new Intent(MainActivity.this,LoginActivity.class)));
         }
         return super.onOptionsItemSelected(item);
     }
