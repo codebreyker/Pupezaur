@@ -1,11 +1,6 @@
 package com.example.pupezaur.connections;
 
-import android.widget.EditText;
-import android.widget.TextView;
-
 import com.example.pupezaur.MainActivity;
-import com.example.pupezaur.R;
-import com.example.pupezaur.Util.Chat;
 
 import org.json.JSONException;
 import org.json.JSONObject;

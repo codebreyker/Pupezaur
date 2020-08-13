@@ -9,14 +9,14 @@
         android:layout_width="300dp"
         android:layout_alignParentEnd="true"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true">
+        android:layout_alignParentRight="true"
+        android:id="@+id/llMessage">
 
         <TextView
-            android:id="@+id/show_message"
+            android:id="@+id/show_message_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/background_message_right"
-            android:text="hi"
             android:layout_marginRight="5dp"
             android:padding="8dp"
             android:textSize="18dp"

@@ -55,18 +55,13 @@ public class ChatFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-//        RecyclerView recyclerView = recycler_view.findViewById(R.id.recycler_view);
-//        recyclerView.setHasFixedSize(true);
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-//        linearLayoutManager.setStackFromEnd(true);
-//        recyclerView.setLayoutManager(linearLayoutManager);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_message, container, false);
+        View v = inflater.inflate(R.layout.activity_message, container, false);
         return v;
     }
 }

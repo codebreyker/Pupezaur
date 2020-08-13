@@ -6,4 +6,10 @@
     android:background="#FAFAFA"
     tools:context=".ui.main.ChatFragment">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hello"
+        android:gravity="center"/>
+
 </RelativeLayout>

@@ -20,6 +20,7 @@
         <!--register        -->
         <activity android:name=".RegisterActivity">
 
+
         </activity>
 
         <!--pagina de login        -->
@@ -30,6 +31,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
 
         </activity>
 

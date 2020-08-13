@@ -6,11 +6,10 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/show_message"
+        android:id="@+id/show_message_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:text="hello"
         android:padding="8dp"
         android:textSize="18dp"
         android:textColor="#fff"

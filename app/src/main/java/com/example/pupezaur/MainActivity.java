@@ -5,21 +5,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.EditText;
+import android.view.View;
 
-import com.example.pupezaur.Util.Chat;
-import com.example.pupezaur.Util.MessageAdaptor;
-import com.example.pupezaur.Util.UserUtil;
-import com.example.pupezaur.connections.ConnectionHandler;
-import com.example.pupezaur.connections.SocketEventHandler;
+import com.example.pupezaur.Util.User;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.pupezaur.ui.main.SectionsPagerAdapter;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,24 +23,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.List;
-
-
 public class MainActivity extends AppCompatActivity {
 
-    ConnectionHandler connectionHandler;
-    static SocketEventHandler socketEventHandler;
-
-
-    Intent intent;
-    MessageAdaptor messageAdaptor;
-    List<Chat> mChat;
-    RecyclerView recyclerView;
-    FirebaseUser firebaseUser;
-    DatabaseReference dbreference;
-    FirebaseDatabase database;
-    EditText username;
     FirebaseAuth auth;
+    FirebaseUser firebaseUser;
+    DatabaseReference databaseReference;
+    TextInputEditText email, password;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,16 +41,21 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        connectionHandler = new ConnectionHandler();
-        connectionHandler.connectSocket();
-        socketEventHandler = new SocketEventHandler(connectionHandler, this);
-        socketEventHandler.doSocketEvents();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
 
-//        recyclerView.setHasFixedSize(true);
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-//        linearLayoutManager.setStackFromEnd(true);
-//        recyclerView.setLayoutManager(linearLayoutManager);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
 
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 }
 
         @Override
@@ -87,44 +75,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(item.getItemId() == R.id.logout) {
-            auth.signOut();
-            finish();
+            FirebaseAuth.getInstance().signOut();
             startActivity((new Intent(MainActivity.this,LoginActivity.class)));
         }
         return super.onOptionsItemSelected(item);
     }
 
-//    public void updateMessage(){
-//        runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                TextView chat = findViewById(R.id.show_message);
-//                chat.append(socketEventHandler.getPersonName() + ": "+socketEventHandler.getMessage() + "\n");
-//            }
-//        });
-//    }
+    public void LoginUser (View v) {
 
-//    private void readMessages (final String myid, final String userid) {
-//        mChat = new ArrayList<>();
-//        dbreference = FirebaseDatabase.getInstance().getReference("Chats");
-//        dbreference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                mChat.clear();
-//                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-//                    Chat chat = snapshot1.getValue(Chat.class);
-//                    if (chat.getReceiver().equals(myid) || chat.getSender().equals(userid) ||
-//                            chat.getReceiver().equals(userid) || chat.getSender().equals(myid)) {
-//                        mChat.add(chat);
-//                    }
-//                }
-//                messageAdaptor = new MessageAdaptor(MainActivity.this, mChat);
-//                recyclerView.setAdapter(messageAdaptor);
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//            }
-//        });
-//    }
+    }
+
 
 }

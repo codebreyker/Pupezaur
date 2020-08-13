@@ -28,15 +28,25 @@ public class RegisterActivity extends AppCompatActivity {
     Button btn_register;
 
     FirebaseAuth auth;
+    FirebaseUser firebaseUser;
     DatabaseReference reference;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null) {
+            Intent intent = new Intent (RegisterActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Register");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -74,7 +84,6 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser firebaseUser = auth.getCurrentUser();
-                            assert firebaseUser != null;
                             String userid = firebaseUser.getUid();
 
                             reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
@@ -103,7 +112,5 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 
-//    private void setSupportActionBar(Toolbar toolbar) {
-//    }
 }
 
