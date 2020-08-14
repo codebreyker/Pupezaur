@@ -75,7 +75,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageA
             holder.show_message_right.setText("You: " + message.getMessage());
             holder.show_message_right.setGravity(Gravity.START);
         } else {
-            holder.show_message_left.setText(message.getName() + ":" + message.getMessage());
+            holder.show_message_right.setText(message.getName() + ":" + message.getMessage());
         }
     }
 
