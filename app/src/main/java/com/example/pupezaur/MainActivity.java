@@ -5,23 +5,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
-import com.example.pupezaur.Util.Chat;
-import com.example.pupezaur.Util.Message;
-import com.example.pupezaur.Util.MessageAdapter;
 import com.example.pupezaur.Util.User;
 import com.example.pupezaur.ui.main.MessageActivity;
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.pupezaur.ui.main.SectionsPagerAdapter;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,16 +23,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
 
-    FirebaseAuth auth;
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
-    RecyclerView recycler_view;
-    TextView username;
-    RecyclerView.LayoutManager layoutManager;
+    FirebaseDatabase firebaseDatabase;
+    FirebaseAuth auth;
+    User u;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,25 +47,28 @@ public class MainActivity extends AppCompatActivity {
 //        layoutManager = new LinearLayoutManager(this);
 //        recycler_view.setLayoutManager(layoutManager);
 
+        auth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        u = new User();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
+//
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                User user = snapshot.getValue(User.class);
 //                username.setText(user.getName());
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 }
 
-        @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.settingsmenu, menu);
@@ -90,12 +83,32 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return false;
         }
-
-        if(item.getItemId() == R.id.logout) {
-            FirebaseAuth.getInstance().signOut();
-            startActivity((new Intent(MainActivity.this,LoginActivity.class)));
-        }
         return super.onOptionsItemSelected(item);
     }
 
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        FirebaseUser currentUser = auth.getCurrentUser();
+//        updateUI(currentUser);
+//    }
+
+//    private void updateUI(final FirebaseUser user) {
+//        if(null!=user){
+//            firebaseDatabase.getReference("Users").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(DataSnapshot dataSnapshot) {
+//                    u=dataSnapshot.getValue(User.class);
+//                    u.setUid(user.getUid());
+//                    Intent intent=new Intent(MainActivity.this, MessageActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                }
+//                @Override
+//                public void onCancelled(DatabaseError databaseError) {
+//
+//                }
+//            });
+//        }
+//    }
 }

@@ -23,8 +23,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
         </activity>
 
         <!--pagina de login        -->
@@ -38,7 +36,6 @@
         <activity
             android:name=".MainActivity"
             android:label="Astrid Swim">
-
         </activity>
 
         <!-- //pagina de setari -->

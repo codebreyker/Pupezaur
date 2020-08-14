@@ -8,11 +8,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.pupezaur.ui.main.MessageActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    Button btn_logout;
+    Button btn_logout, groupchat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,5 +30,14 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        groupchat = findViewById(R.id.groupchat);
+        groupchat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent (SettingsActivity.this, MessageActivity.class));
+                finish();
+            }
+        });
     }
+
 }
