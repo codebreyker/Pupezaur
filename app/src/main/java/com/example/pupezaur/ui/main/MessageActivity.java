@@ -52,6 +52,11 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     FirebaseDatabase database;
     DatabaseReference reference;
     MessageAdapter messageAdapter;
+
+    public User getUser() {
+        return user;
+    }
+
     User user;
     List<Message> messages;
     List<Chat> mChat;
@@ -157,6 +162,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Message message = snapshot.getValue(Message.class);
                 message.setKey(snapshot.getKey());
+                message.setName(user.getName());
                 messages.add(message);
                 displayMessage (messages);
             }
@@ -218,7 +224,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     private void displayMessage(List<Message> messages) {
         recycler_view.setLayoutManager(new LinearLayoutManager(MessageActivity.this));
         messageAdapter = new MessageAdapter(MessageActivity.this, messages, mChat, reference);
-        recycler_view .setAdapter(messageAdapter);
+        recycler_view.setAdapter(messageAdapter);
     }
 
     public void sendMessage (String sender, String receiver, String message) {

@@ -28,12 +28,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageA
     public static final int MSG_TYPE_LEFT = 0;
     public List<Chat> mChat;
     Context context;
-    public List<Message> messageList;
+    List<Message> messageList;
     DatabaseReference reference;
     FirebaseUser fuser;
 
 
-    public MessageAdapter(android.content.Context context, List<Message> messageList, List<Chat> mChat, DatabaseReference reference) {
+    public MessageAdapter(Context context, List<Message> messageList, List<Chat> mChat, DatabaseReference reference) {
         this.context = context;
         this.messageList = messageList;
         this.reference = reference;
@@ -55,20 +55,23 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageA
     @NonNull
     @Override
     public MessageAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == MSG_TYPE_RIGHT) {
-            View view = LayoutInflater.from(context).inflate(R.layout.chat_item_right, parent, false);
-            return new MessageAdapterViewHolder(view);
-        } else {
-            View view = LayoutInflater.from(context).inflate(R.layout.chat_item_left, parent, false);
-            return new MessageAdapterViewHolder(view);
-        }
+//        if (viewType == MSG_TYPE_RIGHT) {
+//            View view = LayoutInflater.from(context).inflate(R.layout.chat_item_right, parent, false);
+//            return new MessageAdapterViewHolder(view);
+//        } else {
+//            View view = LayoutInflater.from(context).inflate(R.layout.chat_item_left, parent, false);
+//            return new MessageAdapterViewHolder(view);
+//        }
+        View view = LayoutInflater.from(context).inflate(R.layout.chat_item_right, parent, false);
+        return new MessageAdapterViewHolder(view);
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull MessageAdapterViewHolder holder, int position) {
 
         Message message = messageList.get(position);
-        if (message.getName().equals(fuser.getUid())){
+        if (message.getName().equals(User.username)){
             holder.show_message_right.setText("You: " + message.getMessage());
             holder.show_message_right.setGravity(Gravity.START);
         } else {

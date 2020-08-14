@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        recycler_view = (RecyclerView) findViewById(R.id.recycler_view);
-        recycler_view.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recycler_view.setLayoutManager(layoutManager);
+//        recycler_view = (RecyclerView) findViewById(R.id.recycler_view);
+//        recycler_view.setHasFixedSize(true);
+//        layoutManager = new LinearLayoutManager(this);
+//        recycler_view.setLayoutManager(layoutManager);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());

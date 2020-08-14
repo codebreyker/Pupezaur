@@ -1,8 +1,8 @@
 package com.example.pupezaur.Util;
 
 public class User {
-     String id;
-     String username, email;
+    String id;
+    public static String username, email;
 
     public User(){}
 
