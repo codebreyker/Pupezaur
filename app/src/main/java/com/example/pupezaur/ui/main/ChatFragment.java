@@ -1,5 +1,6 @@
 package com.example.pupezaur.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.example.pupezaur.R;
 public class ChatFragment extends Fragment {
 
     RecyclerView recyclerView;
+    Intent intent;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,11 +57,14 @@ public class ChatFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = new Intent(getActivity(), MessageActivity.class);
+        startActivity(intent);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
         }
+
     }
 
     @Override
@@ -69,6 +74,8 @@ public class ChatFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.activity_message, container, false);
         return v;
+
+
 
     }
 }

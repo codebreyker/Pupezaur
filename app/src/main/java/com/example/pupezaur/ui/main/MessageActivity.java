@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -66,6 +67,46 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
 
+        init();
+
+        recycler_view = (RecyclerView)findViewById(R.id.recycler_view);
+        recycler_view.setHasFixedSize(true);
+        recycler_view.setLayoutManager(new LinearLayoutManager(context));
+
+//        btn_send.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String msg = text_send.getText().toString();
+//                if (!msg.equals("")){
+//                    sendMessage(fuser.getUid(), fuser.getDisplayName(), msg );
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "You can not send blank message", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+
+        intent = getIntent();
+        final String userid = intent.getStringExtra("id");
+        fuser = FirebaseAuth.getInstance().getCurrentUser();
+//        reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+//        reference.child("Users").child(userid);
+//
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                User user = snapshot.getValue(User.class);
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+    }
+
+    private void init() {
+
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         user = new User();
@@ -75,40 +116,6 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         btn_send = (ImageButton) findViewById(R.id.btn_send);
         text_send = (EditText) findViewById(R.id.text_send);
         messages = new ArrayList<>();
-
-        recycler_view = (RecyclerView)findViewById(R.id.recycler_view);
-        recycler_view.setHasFixedSize(true);
-        recycler_view.setLayoutManager(new LinearLayoutManager(context));
-
-        btn_send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String msg = text_send.getText().toString();
-                if (!msg.equals("")){
-                    sendMessage(fuser.getUid(), fuser.getDisplayName(), msg );
-                } else {
-                    Toast.makeText(getApplicationContext(), "You can not send blank message", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        intent = getIntent();
-        String userid = intent.getStringExtra("userid");
-        fuser = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-                username.setText(user.getName());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 
     @Override
@@ -144,7 +151,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-        reference = database.getReference("messages");
+        reference = database.getReference("Chats");
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -200,6 +207,12 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
 
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        messages = new ArrayList<>();
     }
 
     private void displayMessage(List<Message> messages) {
