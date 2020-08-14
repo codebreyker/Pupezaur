@@ -48,7 +48,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             View view = LayoutInflater.from(context).inflate(R.layout.chat_item_right,parent,false);
             return new ViewHolder(view);
         } else {
-            View view = LayoutInflater.from(context).inflate(R.layout.chat_item_right,parent,false);
+            View view = LayoutInflater.from(context).inflate(R.layout.chat_item_left,parent,false);
             return new ViewHolder(view);
         }
     }
@@ -58,10 +58,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         Message message = messageList.get(position);
         System.out.println(message.getName() + "1");
         System.out.println(AllMethods.name + "2");
-        if (message.getName() == AllMethods.name) {
+        if ("pupe".equals(AllMethods.name)) {
             holder.show_message_right.setText("You" + "\n" + message.getMessage());
         } else {
-            holder.show_message_left.setText(message.getName() + ":\n" + message.getMessage());
+            holder.show_message_left.setText("heheh" + ":\n" + message.getMessage());
             }
         }
 

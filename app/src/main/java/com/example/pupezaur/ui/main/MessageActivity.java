@@ -72,13 +72,14 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         final FirebaseUser currentUser=auth.getCurrentUser();
         u.setUid(currentUser.getUid());
         u.setEmail(currentUser.getEmail());
+        u.setName(currentUser.getDisplayName());
         database.getReference("Users").child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                u=dataSnapshot.getValue(User.class);
-                u.setUid(currentUser.getUid());
-                AllMethods.name=u.getName();
-                Log.e(TAG, "onDataChange: "+ AllMethods.name );
+//                u=dataSnapshot.getValue(User.class);
+//                u.setUid(currentUser.getUid());
+//
+//                Log.e(TAG, "onDataChange: "+ AllMethods.name );
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
