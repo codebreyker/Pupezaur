@@ -7,10 +7,11 @@
 
     <RelativeLayout
         android:layout_width="300dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/llMessage">
 
         <TextView
-            android:id="@+id/show_message_left"
+            android:id="@+id/show_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"

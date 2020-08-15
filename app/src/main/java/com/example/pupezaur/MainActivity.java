@@ -11,6 +11,8 @@ import com.example.pupezaur.Util.User;
 import com.example.pupezaur.ui.main.MessageActivity;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth auth;
     User u;
+    RecyclerView recyclerView;
+    LinearLayoutManager layoutManager;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,30 +46,30 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-//        recycler_view = (RecyclerView) findViewById(R.id.recycler_view);
-//        recycler_view.setHasFixedSize(true);
+//        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+//        recyclerView.setHasFixedSize(true);
 //        layoutManager = new LinearLayoutManager(this);
-//        recycler_view.setLayoutManager(layoutManager);
+//        recyclerView.setLayoutManager(layoutManager);
 
         auth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         u = new User();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
-//
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                User user = snapshot.getValue(User.class);
-//                username.setText(user.getName());
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                u.setName(user.getName());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 }
 
     @Override
@@ -92,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 //        FirebaseUser currentUser = auth.getCurrentUser();
 //        updateUI(currentUser);
 //    }
-
+//
 //    private void updateUI(final FirebaseUser user) {
 //        if(null!=user){
 //            firebaseDatabase.getReference("Users").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -100,9 +104,9 @@ public class MainActivity extends AppCompatActivity {
 //                public void onDataChange(DataSnapshot dataSnapshot) {
 //                    u=dataSnapshot.getValue(User.class);
 //                    u.setUid(user.getUid());
-//                    Intent intent=new Intent(MainActivity.this, MessageActivity.class);
-//                    startActivity(intent);
-//                    finish();
+////                    Intent intent=new Intent(MainActivity.this, MessageActivity.class);
+////                    startActivity(intent);
+////                    finish();
 //                }
 //                @Override
 //                public void onCancelled(DatabaseError databaseError) {

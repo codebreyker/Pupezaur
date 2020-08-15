@@ -19,6 +19,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.List;
+import java.util.jar.Attributes;
+
+import static androidx.constraintlayout.widget.ConstraintSet.LEFT;
+import static androidx.constraintlayout.widget.ConstraintSet.RIGHT;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
 
@@ -26,6 +30,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     List<Message> messageList;
     DatabaseReference databaseReference;
     FirebaseUser firebaseUser;
+    FirebaseAuth firebaseAuth;
+    List <User> userList;
     public static final int MSG_TYPE_LEFT = 0;
     public static final int MSG_TYPE_RIGHT = 1;
 
@@ -42,7 +48,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        android.view.View view= LayoutInflater.from(context).inflate(R.layout.chat_item_right,parent,false);
+//        android.view.View view= LayoutInflater.from(context).inflate(R.layout.chat_item_left,parent,false);
 //        return new ViewHolder(view);
         if (viewType == MSG_TYPE_RIGHT){
             View view = LayoutInflater.from(context).inflate(R.layout.chat_item_right,parent,false);
@@ -56,14 +62,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Message message = messageList.get(position);
-        System.out.println(message.getName() + "1");
-        System.out.println(AllMethods.name + "2");
-        if ("pupe".equals(AllMethods.name)) {
-            holder.show_message_right.setText("You" + "\n" + message.getMessage());
+//        User user = userList.get(position);
+//        holder.show_message.setText(message.getName() + message.getMessage());
+        if (message.getName()==AllMethods.name) {
+            holder.show_message.setText("You" + "\n" + message.getMessage());
         } else {
-            holder.show_message_left.setText("heheh" + ":\n" + message.getMessage());
+            holder.show_message.setText(message.getName() + "\n" + message.getMessage());
             }
-        }
+    }
 
 
     @Override
@@ -72,13 +78,18 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView show_message_right, show_message_left;
+        TextView show_message;
+        RecyclerView recyclerView;
+        LinearLayout llMessage;
 
         public ViewHolder(android.view.View itemView) {
             super(itemView);
 
-            show_message_right=itemView.findViewById(R.id.show_message_right);
-            show_message_left=itemView.findViewById(R.id.show_message_left);
+            recyclerView = itemView.findViewById(R.id.recycler_view);
+//            llMessage=itemView.findViewById(R.id.llMessage);
+            show_message=itemView.findViewById(R.id.show_message);
+//            show_message_left=itemView.findViewById(R.id.show_message_left);
+
 
         }
     }
@@ -87,7 +98,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public int getItemViewType(int position) {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         Message message=messageList.get(position);
-        if (message.getName() == firebaseUser.getUid()) {
+        if (message.getName().equals(AllMethods.name)) {
             return MSG_TYPE_RIGHT;
         } else {
             return MSG_TYPE_LEFT;

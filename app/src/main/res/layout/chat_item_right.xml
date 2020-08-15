@@ -14,7 +14,7 @@
         android:id="@+id/llMessage">
 
         <TextView
-            android:id="@+id/show_message_right"
+            android:id="@+id/show_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/background_message_right"

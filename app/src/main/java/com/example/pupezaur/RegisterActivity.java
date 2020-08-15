@@ -84,13 +84,13 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser firebaseUser = auth.getCurrentUser();
-                            String userid = firebaseUser.getUid();
+                            String uid = firebaseUser.getUid();
 
-                            reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+                            reference = FirebaseDatabase.getInstance().getReference("Users").child(uid);
 
                             HashMap<String, String> hashMap = new HashMap<>();
-                            hashMap.put("id", userid);
-                            hashMap.put("username", username);
+                            hashMap.put("uid", uid);
+                            hashMap.put("name", username);
                             hashMap.put("email", email);
 
                             reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {

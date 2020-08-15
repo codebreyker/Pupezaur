@@ -38,17 +38,21 @@ import java.util.List;
 
 public class MessageActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private static final String TAG = "DashboardActivity";
+    private static final String TAG = "MessageActivity";
     FirebaseAuth auth;
     FirebaseDatabase database;
     DatabaseReference databaseReference;
     MessageAdapter mAdapter;
     User u;
     List<Message> messageList;
+    FirebaseUser firebaseUser;
+    Intent intent;
+    String userid;
 
     RecyclerView recyclerView;
     EditText textSend;
     ImageButton btnSend;
+    private String currentUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_message);
 
         auth=FirebaseAuth.getInstance();
+        currentUserName = auth.getCurrentUser().getUid();
         database=FirebaseDatabase.getInstance();
         u=new User();
 
@@ -64,6 +69,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         btnSend=findViewById(R.id.btn_send);
         btnSend.setOnClickListener(this);
         messageList=new ArrayList<>();
+
     }
 
     @Override
@@ -72,14 +78,14 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         final FirebaseUser currentUser=auth.getCurrentUser();
         u.setUid(currentUser.getUid());
         u.setEmail(currentUser.getEmail());
-        u.setName(currentUser.getDisplayName());
+//        u.setName(currentUser.getDisplayName());
         database.getReference("Users").child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-//                u=dataSnapshot.getValue(User.class);
-//                u.setUid(currentUser.getUid());
-//
-//                Log.e(TAG, "onDataChange: "+ AllMethods.name );
+                u=dataSnapshot.getValue(User.class);
+                u.setUid(currentUser.getUid());
+                AllMethods.name=u.getName();
+                Log.e(TAG, "onDataChange: "+ AllMethods.name );
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -87,7 +93,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-        databaseReference=database.getReference("messages");
+        databaseReference=database.getReference("message");
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
