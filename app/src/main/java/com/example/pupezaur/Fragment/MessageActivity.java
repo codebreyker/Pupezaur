@@ -1,8 +1,12 @@
 package com.example.pupezaur.Fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Spanned;
+import android.text.SpannedString;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -63,7 +67,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         btnSend=findViewById(R.id.btn_send);
         btnSend.setOnClickListener(this);
         messageList=new ArrayList<>();
-
+        
     }
 
     @Override
