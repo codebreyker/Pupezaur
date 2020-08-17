@@ -41,7 +41,7 @@
 
         <!-- pagina de chat-->
         <activity
-            android:name=".Fragment.MessageActivity"
+            android:name=".MainActivities.ChatActivity"
             android:windowSoftInputMode="adjustResize"
             android:label="Chat"
             android:parentActivityName=".MainActivities.MainActivity"/>

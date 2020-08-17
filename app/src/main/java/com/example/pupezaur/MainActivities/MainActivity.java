@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.pupezaur.Fragment.MessageActivity;
 import com.example.pupezaur.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -98,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             int id = item.getItemId();
 //            buton chat
             if (id == R.id.ChatButton) {
-                Intent intent = new Intent(MainActivity.this, MessageActivity.class);
+                Intent intent = new Intent(MainActivity.this, ChatActivity.class);
                 startActivity(intent);
                 return false;
             }

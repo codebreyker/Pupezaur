@@ -1,15 +1,23 @@
 package com.example.pupezaur.ChatUtil;
 
+import android.content.Context;
+
+import java.util.Date;
+
 public class Message {
     String message;
     String name;
     String key;
+
+    long messageTime;
 
     public Message() {}
 
     public Message(String message, String name) {
         this.message = message;
         this.name = name;
+
+        messageTime = new Date().getTime();
     }
 
     public String getMessage() {
@@ -35,6 +43,10 @@ public class Message {
     public void setKey(String key) {
         this.key = key;
     }
+
+    public long getMessageTime() {return messageTime;}
+
+    public void setMessageTime(long messageTime) {this.messageTime = messageTime;}
 
     @Override
     public String toString() {

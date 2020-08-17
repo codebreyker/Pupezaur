@@ -9,8 +9,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.pupezaur.R;
-import com.example.pupezaur.Fragment.ChatFragment;
-import com.example.pupezaur.Fragment.ScheduleFragment;
+import com.example.pupezaur.Fragments.ChatFragment;
+import com.example.pupezaur.Fragments.ScheduleFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

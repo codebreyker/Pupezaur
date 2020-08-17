@@ -25,7 +25,7 @@ import java.util.HashMap;
 public class RegisterActivity extends AppCompatActivity {
 
     MaterialEditText username, email, password;
-    Button btn_register;
+    Button btn_register, btnlogin;
 
     FirebaseAuth auth;
     FirebaseUser firebaseUser;
@@ -56,6 +56,16 @@ public class RegisterActivity extends AppCompatActivity {
         btn_register = findViewById(R.id.btn_register);
 
         auth = FirebaseAuth.getInstance();
+
+        btnlogin = findViewById(R.id.btnlogin);
+        btnlogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +121,15 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 });
+        btnlogin = findViewById(R.id.btnlogin);
+        btnlogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
 }

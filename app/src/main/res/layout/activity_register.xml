@@ -56,5 +56,13 @@
             android:background="@color/BasePink"
             android:textColor="#ffffff"/>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Go to Log In"
+            android:id="@+id/btnlogin"
+            android:layout_marginTop="10dp"
+            android:background="@color/BasePink"
+            android:textColor="#ffffff"/>
     </LinearLayout>
 </RelativeLayout>
