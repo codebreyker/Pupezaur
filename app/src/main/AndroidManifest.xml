@@ -52,9 +52,6 @@
             android:label="Settings"
             android:parentActivityName=".MainActivities.MainActivity" />
 
-
-
-
     </application>
 
 </manifest>

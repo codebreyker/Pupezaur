@@ -1,6 +1,7 @@
 package com.example.pupezaur.ChatUtil;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.List;
+import java.util.Random;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
 
@@ -56,8 +58,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Message message = messageList.get(position);
-//        User user = userList.get(position);
-//        holder.show_message.setText(message.getName() + message.getMessage());
         if (message.getName().equals(AllMethods.name)) {
             holder.show_message.setText("You" + "\n" + message.getMessage());
         } else {
