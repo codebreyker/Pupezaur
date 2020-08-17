@@ -53,7 +53,7 @@
             android:text="Register"
             android:id="@+id/btn_register"
             android:layout_marginTop="10dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/BasePink"
             android:textColor="#ffffff"/>
 
     </LinearLayout>

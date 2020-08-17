@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         getSupportActionBar().setTitle("Register");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         username = findViewById(R.id.username);
         email = findViewById(R.id.email);
@@ -71,7 +71,6 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     register(txt_username, txt_email, txt_password);
                 }
-
             }
         });
     }
@@ -103,6 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         startActivity(intent);
                                         finish();
                                     }
+
                                 }
                             });
 

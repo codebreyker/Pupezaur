@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.pupezaur.ChatUtil.AllMethods;
+import com.example.pupezaur.Fragment.MessageActivity;
 import com.example.pupezaur.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,11 +24,14 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 
 public class LoginActivity extends AppCompatActivity {
     MaterialEditText email, password, username;
-    Button btn_login;
+    Button btn_login, btnregister;
+
     FirebaseAuth auth;
     DatabaseReference reference;
-    public String name;
     FirebaseUser firebaseUser;
+
+    public String name;
+
 
     @Override
     protected void onStart() {
@@ -68,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         btn_login = findViewById(R.id.btn_login);
+        btnregister = findViewById(R.id.btn_register1);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,5 +102,15 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btnregister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
+
 }
