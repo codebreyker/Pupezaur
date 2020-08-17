@@ -58,7 +58,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         Message message = messageList.get(position);
 //        User user = userList.get(position);
 //        holder.show_message.setText(message.getName() + message.getMessage());
-        if (message.getName()==AllMethods.name) {
+        if (message.getName().equals(AllMethods.name)) {
             holder.show_message.setText("You" + "\n" + message.getMessage());
         } else {
             holder.show_message.setText(message.getName() + "\n" + message.getMessage());
@@ -74,13 +74,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView show_message;
         RecyclerView recyclerView;
-        LinearLayout llMessage;
 
         public ViewHolder(android.view.View itemView) {
             super(itemView);
 
             recyclerView = itemView.findViewById(R.id.recycler_view);
-//            llMessage=itemView.findViewById(R.id.llMessage);
             show_message=itemView.findViewById(R.id.show_message);
         }
     }
@@ -89,7 +87,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public int getItemViewType(int position) {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         Message message=messageList.get(position);
-        if (message.getName()==(AllMethods.name)) {
+        if (message.getName().equals(AllMethods.name)) {
             return MSG_TYPE_RIGHT;
         } else {
             return MSG_TYPE_LEFT;
