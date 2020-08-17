@@ -1,13 +1,7 @@
-package com.example.pupezaur.Fragment;
+package com.example.pupezaur.MainActivities;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Spanned;
-import android.text.SpannedString;
 import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -22,7 +16,6 @@ import com.example.pupezaur.ChatUtil.AllMethods;
 import com.example.pupezaur.ChatUtil.Message;
 import com.example.pupezaur.ChatUtil.MessageAdapter;
 import com.example.pupezaur.ChatUtil.User;
-import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -35,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessageActivity extends AppCompatActivity implements View.OnClickListener{
+public class ChatActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = "MessageActivity";
     FirebaseAuth auth;
@@ -50,7 +43,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     RecyclerView recyclerView;
     EditText textSend;
     ImageButton btnSend;
-    private String currentUserName;
+    private String currentUserName, currentDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,9 +141,9 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void displayMessages(List<Message> messages) {
-        recyclerView.setLayoutManager(new LinearLayoutManager(MessageActivity.this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(ChatActivity.this));
         recyclerView.setHasFixedSize(true);
-        mAdapter=new MessageAdapter(MessageActivity.this,messages,databaseReference);
+        mAdapter=new MessageAdapter(ChatActivity.this,messages,databaseReference);
         this.recyclerView.scrollTo(0, this.recyclerView.getBottom());
         mAdapter.notifyItemInserted(messageList.size()-1);
         this.recyclerView.scrollToPosition(mAdapter.getItemCount()-1);
@@ -176,4 +169,5 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         super.onResume();
         messageList=new ArrayList<>();
     }
+
 }

@@ -1,4 +1,4 @@
-package com.example.pupezaur.Fragment;
+package com.example.pupezaur.Fragments;
 
 import android.os.Bundle;
 
