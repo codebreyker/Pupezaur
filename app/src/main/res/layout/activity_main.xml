@@ -18,4 +18,11 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="295dp"
+        android:layout_alignParentBottom="true"
+        android:text="" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
