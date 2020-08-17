@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pupezaur.R;
@@ -25,7 +26,8 @@ import java.util.HashMap;
 public class RegisterActivity extends AppCompatActivity {
 
     MaterialEditText username, email, password;
-    Button btn_register, btnlogin;
+    Button btn_register;
+    TextView btnlogin;
 
     FirebaseAuth auth;
     FirebaseUser firebaseUser;
@@ -131,6 +133,5 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-
 }
 

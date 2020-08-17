@@ -26,7 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/show_message"
             android:id="@+id/time_box"
-            android:layout_alignParentLeft="true"/>
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"/>
 
     </RelativeLayout>
 </RelativeLayout>

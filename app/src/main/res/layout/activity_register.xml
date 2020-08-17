@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/llayout"
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:layout_below="@+id/toolbar"
@@ -18,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Create new account"
+            android:textColor="#000"
             android:textSize="20dp"
             android:textStyle="bold"/>
 
@@ -56,13 +58,19 @@
             android:background="@color/BasePink"
             android:textColor="#ffffff"/>
 
-        <Button
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Go to Log In"
-            android:id="@+id/btnlogin"
+            android:text="Already have an account?"
             android:layout_marginTop="10dp"
-            android:background="@color/BasePink"
-            android:textColor="#ffffff"/>
+            android:textColor="#000"
+            android:onClick="onClick"
+            android:id="@+id/btnlogin"
+            android:layout_gravity="center"
+            android:paddingLeft="10dp"/>
+
     </LinearLayout>
+
+
+
 </RelativeLayout>

@@ -81,7 +81,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         Message message = messageList.get(position);
         if (message.getName().equals(AllMethods.name)) {
             holder.show_message.setText("You" + "\n" + message.getMessage());
-            holder.time_box.setText(DateFormat.format("HH:mm \n MMM.dd.yyyy", message.getMessageTime()));
+            holder.time_box.setText(DateFormat.format("HH:mm \n dd.MM.yyyy", message.getMessageTime()));
         } else {
             holder.show_message.setText(message.getName() + "\n" + message.getMessage());
             holder.time_box.setText(DateFormat.format("HH:mm \n MMM.dd.yyyy", message.getMessageTime()));

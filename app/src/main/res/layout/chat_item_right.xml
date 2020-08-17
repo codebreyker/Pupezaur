@@ -32,7 +32,9 @@
             android:layout_below="@id/show_message"
             android:id="@+id/time_box"
             android:layout_alignParentRight="true"
-            android:gravity="right" />
+            android:gravity="right"
+            android:layout_marginRight="5dp"
+            />
 
     </RelativeLayout>
 </RelativeLayout>

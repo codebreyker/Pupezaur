@@ -38,12 +38,10 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     User u;
     List<Message> messageList;
 
-    LinearLayoutManager mActivity;
-
     RecyclerView recyclerView;
     EditText textSend;
     ImageButton btnSend;
-    private String currentUserName, currentDate;
+    private String currentUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
