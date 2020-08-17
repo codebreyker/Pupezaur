@@ -168,4 +168,8 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         messageList=new ArrayList<>();
     }
 
+    public void onBackPressed() {
+        super.onBackPressed();
+        ChatActivity.this.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
 }

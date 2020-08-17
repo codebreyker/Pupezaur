@@ -42,26 +42,26 @@ public class MainActivity extends AppCompatActivity {
 
         //Posibil (SIGUR) sa crape daca nu exista in baza de date un user cu proprietatea isAdmin
 
-
-        databaseReference.child("Users").child(firebaseUser.getUid()).child("isAdmin").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String admin = snapshot.getValue().toString();
-                System.err.println(admin + "+++++++++++++++++++++++++");
-                if(admin.equals("1")){
-                    isAdmin = true;
-                }
-                else {
-                    isAdmin = false;
-                }
-                adminCheck();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//
+//        databaseReference.child("Users").child(firebaseUser.getUid()).child("isAdmin").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                String admin = snapshot.getValue().toString();
+//                System.err.println(admin + "+++++++++++++++++++++++++");
+//                if(admin.equals("1")){
+//                    isAdmin = true;
+//                }
+//                else {
+//                    isAdmin = false;
+//                }
+//                adminCheck();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
 
     }
@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
             if (id == R.id.ChatButton) {
                 Intent intent = new Intent(MainActivity.this, ChatActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 return false;
             }
 //            buton setari

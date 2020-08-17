@@ -5,8 +5,11 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.SystemClock;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.format.DateFormat;
 import android.text.format.DateUtils;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,13 +81,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     }
 
     public void onBindViewHolder(ViewHolder holder, int position) {
+        String s = "You";
+        SpannableString spannable = new SpannableString(s);
+        spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#FFE484A5")), 1, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         Message message = messageList.get(position);
         if (message.getName().equals(AllMethods.name)) {
-            holder.show_message.setText("You" + "\n" + message.getMessage());
+            holder.show_message.setText(spannable + "\n" + message.getMessage());
             holder.time_box.setText(DateFormat.format("HH:mm \n dd.MM.yyyy", message.getMessageTime()));
         } else {
             holder.show_message.setText(message.getName() + "\n" + message.getMessage());
-            holder.time_box.setText(DateFormat.format("HH:mm \n MMM.dd.yyyy", message.getMessageTime()));
+            holder.time_box.setText(DateFormat.format("HH:mm \n dd.MM.yyyy", message.getMessageTime()));
             }
 
     }
