@@ -17,35 +17,44 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <!--register        -->
-        <activity android:name=".RegisterActivity">
+        <!--pagina de register        -->
+        <activity
+            android:name=".MainActivities.RegisterActivity"
+            android:label="Astrid Swim">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
-        <!--pagina de login        -->
+        <!-- pagina de login -->
         <activity
-            android:name=".LoginActivity"
-            android:label="Astrid Swim">
-
-
-        </activity>
-
-        <!-- ?//pagina principala -->
-        <activity
-            android:name=".MainActivity"
+            android:name=".MainActivities.LoginActivity"
             android:label="Astrid Swim">
         </activity>
 
-        <!-- //pagina de setari -->
+<!--        pagina principala-->
         <activity
-            android:name=".SettingsActivity"
+            android:name=".MainActivities.MainActivity"
+            android:label="Astrid Swim">
+        </activity>
+
+        <!-- pagina de chat-->
+        <activity
+            android:name=".Fragment.MessageActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:label="Chat"
+            android:parentActivityName=".MainActivities.MainActivity"/>
+
+        <!-- pagina de setari -->
+        <activity
+            android:name=".MainActivities.SettingsActivity"
             android:label="Settings"
-            android:parentActivityName=".SettingsActivity" />
-        <activity android:name=".ui.main.MessageActivity" />
+            android:parentActivityName=".MainActivities.MainActivity" />
+
+
+
+
     </application>
 
 </manifest>

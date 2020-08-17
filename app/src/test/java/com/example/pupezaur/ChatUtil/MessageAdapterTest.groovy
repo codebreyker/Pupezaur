@@ -1,4 +1,4 @@
-package com.example.pupezaur.Util
+package com.example.pupezaur.ChatUtil
 
 class MessageAdapterTest extends GroovyTestCase {
     void testAddMessage() {

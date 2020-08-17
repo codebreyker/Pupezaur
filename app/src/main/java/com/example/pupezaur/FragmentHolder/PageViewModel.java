@@ -1,4 +1,4 @@
-package com.example.pupezaur.ui.main;
+package com.example.pupezaur.FragmentHolder;
 
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;

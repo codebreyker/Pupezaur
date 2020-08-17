@@ -1,29 +1,24 @@
-package com.example.pupezaur.ui.main;
+package com.example.pupezaur.Fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pupezaur.R;
-import com.example.pupezaur.Util.AllMethods;
-import com.example.pupezaur.Util.Message;
-import com.example.pupezaur.Util.MessageAdapter;
-import com.example.pupezaur.Util.User;
+import com.example.pupezaur.ChatUtil.AllMethods;
+import com.example.pupezaur.ChatUtil.Message;
+import com.example.pupezaur.ChatUtil.MessageAdapter;
+import com.example.pupezaur.ChatUtil.User;
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -45,9 +40,8 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     MessageAdapter mAdapter;
     User u;
     List<Message> messageList;
-    FirebaseUser firebaseUser;
-    Intent intent;
-    String userid;
+
+    LinearLayoutManager mActivity;
 
     RecyclerView recyclerView;
     EditText textSend;
@@ -85,7 +79,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                 u=dataSnapshot.getValue(User.class);
                 u.setUid(currentUser.getUid());
                 AllMethods.name=u.getName();
-                Log.e(TAG, "onDataChange: "+ AllMethods.name );
+//                Log.e(TAG, "onDataChange: "+ AllMethods.name );
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -151,8 +145,13 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
 
     private void displayMessages(List<Message> messages) {
         recyclerView.setLayoutManager(new LinearLayoutManager(MessageActivity.this));
+        recyclerView.setHasFixedSize(true);
         mAdapter=new MessageAdapter(MessageActivity.this,messages,databaseReference);
-        recyclerView.setAdapter(mAdapter);
+        this.recyclerView.scrollTo(0, this.recyclerView.getBottom());
+        mAdapter.notifyItemInserted(messageList.size()-1);
+        this.recyclerView.scrollToPosition(mAdapter.getItemCount()-1);
+        ((LinearLayoutManager)recyclerView.getLayoutManager()).setStackFromEnd(true);
+        this.recyclerView.setAdapter(mAdapter);
 
     }
 

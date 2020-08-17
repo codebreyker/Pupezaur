@@ -1,4 +1,4 @@
-package com.example.pupezaur.ui.main;
+package com.example.pupezaur.FragmentHolder;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

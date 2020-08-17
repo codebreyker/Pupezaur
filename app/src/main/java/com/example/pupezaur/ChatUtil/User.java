@@ -1,4 +1,4 @@
-package com.example.pupezaur.Util;
+package com.example.pupezaur.ChatUtil;
 
 public class User {
     String uid;

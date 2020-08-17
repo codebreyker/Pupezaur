@@ -1,4 +1,4 @@
-package com.example.pupezaur.ui.main;
+package com.example.pupezaur.FragmentHolder;
 
 import android.content.Context;
 
@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.pupezaur.R;
+import com.example.pupezaur.Fragment.ChatFragment;
+import com.example.pupezaur.Fragment.ScheduleFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

@@ -1,6 +1,7 @@
-package com.example.pupezaur.connections;
+package com.example.pupezaur.Connections;
 
-import com.example.pupezaur.MainActivity;
+//import com.example.pupezaur.MainActivities.MainActivity;
+import com.example.pupezaur.MainActivities.MainActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;

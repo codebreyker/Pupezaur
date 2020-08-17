@@ -1,13 +1,4 @@
-package com.example.pupezaur.connections;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.net.DatagramSocket;
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
+package com.example.pupezaur.Connections;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;

@@ -1,16 +1,12 @@
-package com.example.pupezaur.Util;
+package com.example.pupezaur.ChatUtil;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pupezaur.R;
@@ -19,10 +15,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.List;
-import java.util.jar.Attributes;
-
-import static androidx.constraintlayout.widget.ConstraintSet.LEFT;
-import static androidx.constraintlayout.widget.ConstraintSet.RIGHT;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
 
@@ -32,6 +24,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     FirebaseUser firebaseUser;
     FirebaseAuth firebaseAuth;
     List <User> userList;
+    RecyclerView recyclerView;
     public static final int MSG_TYPE_LEFT = 0;
     public static final int MSG_TYPE_RIGHT = 1;
 
@@ -57,6 +50,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             View view = LayoutInflater.from(context).inflate(R.layout.chat_item_left,parent,false);
             return new ViewHolder(view);
         }
+
     }
 
     @Override
@@ -88,9 +82,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             recyclerView = itemView.findViewById(R.id.recycler_view);
 //            llMessage=itemView.findViewById(R.id.llMessage);
             show_message=itemView.findViewById(R.id.show_message);
-//            show_message_left=itemView.findViewById(R.id.show_message_left);
-
-
         }
     }
 
@@ -98,7 +89,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public int getItemViewType(int position) {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         Message message=messageList.get(position);
-        if (message.getName().equals(AllMethods.name)) {
+        if (message.getName()==(AllMethods.name)) {
             return MSG_TYPE_RIGHT;
         } else {
             return MSG_TYPE_LEFT;
