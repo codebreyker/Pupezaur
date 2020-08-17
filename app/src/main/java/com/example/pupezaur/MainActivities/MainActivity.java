@@ -11,12 +11,43 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.pupezaur.Fragment.MessageActivity;
 import com.example.pupezaur.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
+    FirebaseAuth auth;
+    FirebaseUser firebaseUser;
+    DatabaseReference databaseReference ;
+
+    boolean isAdmin;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        auth=FirebaseAuth.getInstance();
+        firebaseUser = auth.getCurrentUser();
+        databaseReference=FirebaseDatabase.getInstance().getReference();
+
+
+        //Posibil (SIGUR) sa crape daca nu exista in baza de date un user cu proprietatea isAdmin
+
+//        String admin=  databaseReference.child("Users").child(firebaseUser.getUid()).child("isAdmin").toString();
+//        if(admin.equals("1")){
+//            isAdmin = true;
+//        }
+//        else {
+//            isAdmin = false;
+//        }
+
+        if (isAdmin){
+            //daca e admin, ecranul va afista casute pentru a creea programul propriu
+            //de asemenea o lista cu programerile pe care le are
+        }else {
+            //altfel e un user oarecare, care isi poate creea o programare
+            // si va vedea o lista cu propriile programari.
+        }
 
     }
 

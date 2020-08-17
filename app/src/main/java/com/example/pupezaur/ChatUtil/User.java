@@ -4,6 +4,16 @@ public class User {
     String uid;
     String name;
     String email;
+    boolean isAdmin;
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
 
     public User(){}
 

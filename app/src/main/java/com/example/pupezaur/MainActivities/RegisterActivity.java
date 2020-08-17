@@ -92,6 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                             hashMap.put("uid", uid);
                             hashMap.put("name", username);
                             hashMap.put("email", email);
+                            //hashMap.put("isAdmin","1");
 
                             reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
