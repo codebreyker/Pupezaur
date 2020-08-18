@@ -29,7 +29,7 @@
 
         <!-- pagina de login -->
         <activity
-            android:name=".MainActivities.LoginActivity"
+            android:name=".MainActivities.SigninActivity"
             android:label="Astrid Swim">
         </activity>
 

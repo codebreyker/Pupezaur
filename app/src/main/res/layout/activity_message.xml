@@ -2,13 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#c6c6c6"
-    tools:context="com.example.pupezaur.Fragments.ChatFragment"
     app:layout_constraintBottom_toBottomOf="@+id/toolbar"
     android:id="@+id/message_activity"
-    app:layout_collapseMode="pin">
+    android:theme="@android:style/Animation.Activity"
+    style="@style/CustomActivityAnimation"
+    tools:context=".MainActivities.ChatActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

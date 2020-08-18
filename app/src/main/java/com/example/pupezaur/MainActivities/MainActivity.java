@@ -5,19 +5,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pupezaur.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     boolean isAdmin;
 
     TextView textView;
+    Spinner dropdown_weekdays;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,11 @@ public class MainActivity extends AppCompatActivity {
         databaseReference=FirebaseDatabase.getInstance().getReference();
 
         textView = findViewById(R.id.textView);
+        dropdown_weekdays = findViewById(R.id.dropdown_weekdays);
 
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.weekdays_array, R.layout.support_simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown_weekdays.setAdapter(adapter);
 
         //Posibil (SIGUR) sa crape daca nu exista in baza de date un user cu proprietatea isAdmin
 
@@ -78,6 +83,41 @@ public class MainActivity extends AppCompatActivity {
             textView.append("USER");
         }
     }
+
+//    @Override
+    public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
+
+        switch (position) {
+            case 0:
+                // Whatever you want to happen when the first item gets selected
+                break;
+            case 1:
+                // Whatever you want to happen when the second item gets selected
+                break;
+            case 2:
+                // Whatever you want to happen when the third item gets selected
+                break;
+            case 3:
+                // Whatever you want to happen when the fourth item gets selected
+                break;
+            case 4:
+                // Whatever you want to happen when the fifth item gets selected
+                break;
+            case 5:
+                // Whatever you want to happen when the sixth item gets selected
+                break;
+            case 6:
+                // Whatever you want to happen when the seventh item gets selected
+                break;
+
+        }
+    }
+
+//    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        // TODO Auto-generated method stub
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -102,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 return false;
             }
+
 //            buton setari
             if (id == R.id.btn_settings){
                 Intent intent = new Intent (MainActivity.this, SettingsActivity.class);
@@ -111,12 +152,17 @@ public class MainActivity extends AppCompatActivity {
 //            buton logout
             if (id == R.id.btn_logout) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent (MainActivity.this, LoginActivity.class));
+                startActivity(new Intent (MainActivity.this, SigninActivity.class));
                 finish();
             }
 
             return super.onOptionsItemSelected(item);
         }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
 }
 

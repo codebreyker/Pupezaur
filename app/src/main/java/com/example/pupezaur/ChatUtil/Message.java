@@ -1,7 +1,5 @@
 package com.example.pupezaur.ChatUtil;
 
-import android.content.Context;
-
 import java.util.Date;
 
 public class Message {

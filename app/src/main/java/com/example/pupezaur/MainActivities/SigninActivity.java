@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pupezaur.ChatUtil.AllMethods;
@@ -21,9 +22,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-public class LoginActivity extends AppCompatActivity {
+public class SigninActivity extends AppCompatActivity {
     MaterialEditText email, password, username;
-    Button btn_login, btnregister;
+    Button btn_signin;
+    TextView btnregister;
 
     FirebaseAuth auth;
     DatabaseReference reference;
@@ -36,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if (firebaseUser != null) {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(SigninActivity.this, MainActivity.class);
             startActivity(intent);
             FirebaseUser currentUser = auth.getCurrentUser();
             finish();
@@ -46,23 +48,23 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_signin);
 
         auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null){
-            Intent intent = new Intent (LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent (SigninActivity.this, MainActivity.class);
             startActivity(intent);
         }
         else {
-            setContentView(R.layout.activity_login);
+            setContentView(R.layout.activity_signin);
             username = findViewById(R.id.username);
             email = findViewById(R.id.email);
             password = findViewById(R.id.password);
-            btn_login = findViewById(R.id.btn_login);
+            btn_signin = findViewById(R.id.btn_signin);
             reference = FirebaseDatabase.getInstance().getReference().child("Users");
         }
 
-        getSupportActionBar().setTitle("LogIn");
+        getSupportActionBar().setTitle("Sign In");
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         auth = FirebaseAuth.getInstance();
@@ -70,10 +72,10 @@ public class LoginActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        btn_login = findViewById(R.id.btn_login);
-        btnregister = findViewById(R.id.btn_register1);
+        btn_signin = findViewById(R.id.btn_signin);
+        btnregister = findViewById(R.id.btnregister);
 
-        btn_login.setOnClickListener(new View.OnClickListener() {
+        btn_signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final String txt_username = username.getText().toString();
@@ -81,20 +83,20 @@ public class LoginActivity extends AppCompatActivity {
                 String txt_password = password.getText().toString();
 
                 if (TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_username)) {
-                    Toast.makeText(LoginActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SigninActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
                 } else {
                     auth.signInWithEmailAndPassword(txt_email, txt_password)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        Intent intent = new Intent(SigninActivity.this, MainActivity.class);
                                         AllMethods.name = txt_username;
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent);
                                         finish();
                                     } else {
-                                        Toast.makeText(LoginActivity.this, "Authentication failed", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SigninActivity.this, "Authentication failed", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
@@ -102,12 +104,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnregister.setOnClickListener(new View.OnClickListener() {
+    btnregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-                finish();
+        Intent intent = new Intent(SigninActivity.this, RegisterActivity.class);
+        startActivity(intent);
+        finish();
             }
         });
     }

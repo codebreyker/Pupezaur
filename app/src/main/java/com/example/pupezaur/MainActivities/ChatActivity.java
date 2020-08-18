@@ -1,5 +1,6 @@
 package com.example.pupezaur.MainActivities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -30,7 +31,6 @@ import java.util.List;
 
 public class ChatActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private static final String TAG = "MessageActivity";
     FirebaseAuth auth;
     FirebaseDatabase database;
     DatabaseReference databaseReference;
@@ -50,15 +50,21 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
         auth=FirebaseAuth.getInstance();
         currentUserName = auth.getCurrentUser().getUid();
-        database=FirebaseDatabase.getInstance();
-        u=new User();
+        database = FirebaseDatabase.getInstance();
+        u = new User();
 
-        recyclerView=findViewById(R.id.recycler_view);
-        textSend=findViewById(R.id.text_send);
-        btnSend=findViewById(R.id.btn_send);
+        recyclerView = findViewById(R.id.recycler_view);
+        textSend = findViewById(R.id.text_send);
+        btnSend = findViewById(R.id.btn_send);
         btnSend.setOnClickListener(this);
-        messageList=new ArrayList<>();
-        
+        messageList = new ArrayList<>();
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, MainActivity.class));
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        finish();
     }
 
     @Override
@@ -67,7 +73,6 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         final FirebaseUser currentUser=auth.getCurrentUser();
         u.setUid(currentUser.getUid());
         u.setEmail(currentUser.getEmail());
-//        u.setName(currentUser.getDisplayName());
         database.getReference("Users").child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -86,7 +91,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Message message=dataSnapshot.getValue(Message.class);
+                Message message = dataSnapshot.getValue(Message.class);
                 message.setKey(dataSnapshot.getKey());
                 messageList.add(message);
                 displayMessages(messageList);
@@ -127,22 +132,19 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
-
     }
 
     private void displayMessages(List<Message> messages) {
         recyclerView.setLayoutManager(new LinearLayoutManager(ChatActivity.this));
         recyclerView.setHasFixedSize(true);
         mAdapter=new MessageAdapter(ChatActivity.this,messages,databaseReference);
-        this.recyclerView.scrollTo(0, this.recyclerView.getBottom());
+//        this.recyclerView.scrollTo(0, this.recyclerView.getBottom());
         mAdapter.notifyItemInserted(messageList.size()-1);
         this.recyclerView.scrollToPosition(mAdapter.getItemCount()-1);
         ((LinearLayoutManager)recyclerView.getLayoutManager()).setStackFromEnd(true);
@@ -158,7 +160,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             databaseReference.push().setValue(message);
         }
         else {
-            Toast.makeText(this, "Please write message.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "You cannot send an empty message", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -168,8 +170,4 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         messageList=new ArrayList<>();
     }
 
-    public void onBackPressed() {
-        super.onBackPressed();
-        ChatActivity.this.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-    }
 }

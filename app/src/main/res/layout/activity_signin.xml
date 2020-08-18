@@ -18,9 +18,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LogIn"
+            android:text="Sign In"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="#000"/>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
@@ -49,21 +50,22 @@
             android:hint="Password"/>
 
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_signin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@color/BasePink"
-            android:text="Log In"
+            android:text="Sign In"
             android:textColor="#ffffff" />
 
-        <Button
-            android:id="@+id/btn_register1"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/btnregister"
+            android:text="Create account"
             android:layout_marginTop="10dp"
-            android:background="@color/BasePink"
-            android:text="Register"
-            android:textColor="#ffffff" />
+            android:textColor="#000"
+            android:onClick="onClick"/>
+
     </LinearLayout>
 </RelativeLayout>
