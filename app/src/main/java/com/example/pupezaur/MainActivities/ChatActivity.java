@@ -3,20 +3,23 @@ package com.example.pupezaur.MainActivities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pupezaur.R;
-import com.example.pupezaur.ChatUtil.AllMethods;
-import com.example.pupezaur.ChatUtil.Message;
-import com.example.pupezaur.ChatUtil.MessageAdapter;
-import com.example.pupezaur.ChatUtil.User;
+import com.example.pupezaur.Utils.AllMethods;
+import com.example.pupezaur.Utils.Message;
+import com.example.pupezaur.Utils.MessageAdapter;
+import com.example.pupezaur.Utils.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -41,12 +44,16 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     RecyclerView recyclerView;
     EditText textSend;
     ImageButton btnSend;
+    Button back_button;
     private String currentUserName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         auth=FirebaseAuth.getInstance();
         currentUserName = auth.getCurrentUser().getUid();
@@ -56,15 +63,10 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView = findViewById(R.id.recycler_view);
         textSend = findViewById(R.id.text_send);
         btnSend = findViewById(R.id.btn_send);
+
         btnSend.setOnClickListener(this);
         messageList = new ArrayList<>();
-    }
 
-    public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(this, MainActivity.class));
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        finish();
     }
 
     @Override
@@ -168,6 +170,23 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
         messageList=new ArrayList<>();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void onBackPressed() {
+//        super.onBackPressed();
+        startActivity(new Intent(this, MainActivity.class));
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        finish();
     }
 
 }

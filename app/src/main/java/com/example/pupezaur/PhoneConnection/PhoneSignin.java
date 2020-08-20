@@ -11,10 +11,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.pupezaur.ChatUtil.AllMethods;
+import com.example.pupezaur.Utils.AllMethods;
 import com.example.pupezaur.MainActivities.MainActivity;
 import com.example.pupezaur.MainActivities.RegisterActivity;
-import com.example.pupezaur.MainActivities.SigninActivity;
 import com.example.pupezaur.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

@@ -88,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void register(final String username, final String email, String password) {
-
+        
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -114,10 +114,8 @@ public class RegisterActivity extends AppCompatActivity {
                                         startActivity(intent);
                                         finish();
                                     }
-
                                 }
                             });
-
                         } else {
                             Toast.makeText(RegisterActivity.this, "You can't register with this email or password", Toast.LENGTH_SHORT).show();
                         }

@@ -1,51 +1,108 @@
 package com.example.pupezaur.MainActivities;
 
-import android.content.Intent;
+import android.app.TimePickerDialog;
+import android.content.Intent;;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
+import com.example.pupezaur.Fragments.FragmentMonday;
+import com.example.pupezaur.Fragments.FragmentTuesday;
+import com.example.pupezaur.Fragments.TimePickerFragment;
 import com.example.pupezaur.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class MainActivity extends AppCompatActivity {
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class MainActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
     FirebaseAuth auth;
     FirebaseUser firebaseUser;
-    DatabaseReference databaseReference ;
+    DatabaseReference databaseReference;
 
     boolean isAdmin;
 
-    TextView textView;
+    TextView start_timer, end_timer, textView;
+    FloatingActionButton btn_add;
     Spinner dropdown_weekdays;
+
+    FragmentMonday fragmentOne;
+    FragmentTuesday fragmentTwo;
+    FrameLayout fragmentContainer;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        auth=FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
         firebaseUser = auth.getCurrentUser();
-        databaseReference=FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
+        start_timer = findViewById(R.id.start_timer);
+        end_timer = findViewById(R.id.end_timer);
+        btn_add = findViewById(R.id.btn_add);
         textView = findViewById(R.id.textView);
         dropdown_weekdays = findViewById(R.id.dropdown_weekdays);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.weekdays_array, R.layout.support_simple_spinner_dropdown_item);
+        fragmentOne = new FragmentMonday();
+        fragmentTwo = new FragmentTuesday();
+        fragmentContainer = findViewById(R.id.main_frame);
+
+        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.weekdays_array, R.layout.support_simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_weekdays.setAdapter(adapter);
 
-        //Posibil (SIGUR) sa crape daca nu exista in baza de date un user cu proprietatea isAdmin
+
+        dropdown_weekdays.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i) {
+                    case 0:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new FragmentMonday()).commit();
+                        break;
+                    case 1:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new FragmentTuesday()).commit();
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        btn_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callback = "for_start_time";
+                DialogFragment timePicker = new TimePickerFragment();
+                timePicker.show(getSupportFragmentManager(), "time picker");
+
+            }
+        });
+
+    }
+
+
+            //Posibil (SIGUR) sa crape daca nu exista in baza de date un user cu proprietatea isAdmin
 
 //
 //        databaseReference.child("Users").child(firebaseUser.getUid()).child("isAdmin").addValueEventListener(new ValueEventListener() {
@@ -69,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
 
-    }
     void adminCheck(){
         if (isAdmin){
             //daca e admin, ecranul va afista casute pentru a creea programul propriu
@@ -84,45 +140,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-//    @Override
-    public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
-
-        switch (position) {
-            case 0:
-                // Whatever you want to happen when the first item gets selected
-                break;
-            case 1:
-                // Whatever you want to happen when the second item gets selected
-                break;
-            case 2:
-                // Whatever you want to happen when the third item gets selected
-                break;
-            case 3:
-                // Whatever you want to happen when the fourth item gets selected
-                break;
-            case 4:
-                // Whatever you want to happen when the fifth item gets selected
-                break;
-            case 5:
-                // Whatever you want to happen when the sixth item gets selected
-                break;
-            case 6:
-                // Whatever you want to happen when the seventh item gets selected
-                break;
-
-        }
-    }
-
-//    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        // TODO Auto-generated method stub
-    }
-
     @Override
     protected void onStart() {
         super.onStart();
 
     }
+
 
     //    meniul de setari
         @Override
@@ -159,10 +182,40 @@ public class MainActivity extends AppCompatActivity {
             return super.onOptionsItemSelected(item);
         }
 
+    String callback = "";
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-    }
+    public void onTimeSet(TimePicker timePicker, final int hour, final int minute) {
+        if (TextUtils.isEmpty(callback))
+            return;
+
+        if (callback.equalsIgnoreCase("for_start_time")){
+            // set in mTimePicker
+            SimpleDateFormat f24Hour = new SimpleDateFormat("HH:mm");
+            try {
+                Date date = f24Hour.parse(hour + ":" + minute);
+                start_timer.setText(f24Hour.format(date) + " - ");
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+//            start_timer.setText(hour + ":" + minute + " - ");
+            DialogFragment timePicker1 = new TimePickerFragment();
+            timePicker1.show(getSupportFragmentManager(), "time picker");
+        }
+        else if (callback.equalsIgnoreCase("for_end_time")){
+            SimpleDateFormat f24Hour = new SimpleDateFormat("HH:mm");
+            try {
+                Date date = f24Hour.parse(hour + ":" + minute);
+                end_timer.setText(f24Hour.format(date));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            // set in mTimePicker1
+//            end_timer.setText(hour + ":" + minute);
+        }
+
+        //Dont forgot to reset callback
+        callback = "for_end_time";
+        }
 }
+
 

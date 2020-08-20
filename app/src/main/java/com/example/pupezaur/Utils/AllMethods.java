@@ -1,4 +1,4 @@
-package com.example.pupezaur.ChatUtil;
+package com.example.pupezaur.Utils;
 
 public class AllMethods {
 

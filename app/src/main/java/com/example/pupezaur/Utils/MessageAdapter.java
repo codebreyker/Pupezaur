@@ -1,4 +1,4 @@
-package com.example.pupezaur.ChatUtil;
+package com.example.pupezaur.Utils;
 
 import android.content.Context;
 import android.text.format.DateFormat;
@@ -52,11 +52,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         Message message = messageList.get(position);
         if (message.getName().equals(AllMethods.name)) {
-            holder.show_message.setText("You\n" + message.getMessage());
-            holder.time_box.setText(DateFormat.format("HH:mm \ndd.MM.yyyy", message.getMessageTime()));
+            holder.txt_you.setText("You");
+            holder.show_message.setText(message.getMessage());
+            holder.time_box.setText(DateFormat.format("HH:mm - MMM.dd.yyyy", message.getMessageTime()));
         } else {
-            holder.show_message.setText(message.getName() + "\n" + message.getMessage());
-            holder.time_box.setText(DateFormat.format("HH:mm \n dd.MM.yyyy", message.getMessageTime()));
+            holder.txt_sender.setText(message.getName());
+            holder.show_message.setText(message.getMessage());
+            holder.time_box.setText(DateFormat.format("HH:mm - MMM.dd.yyyy", message.getMessageTime()));
             }
     }
 
@@ -66,7 +68,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView show_message, time_box;
+        TextView show_message, time_box, txt_you, txt_sender;
         RecyclerView recyclerView;
 
         public ViewHolder(android.view.View itemView) {
@@ -75,6 +77,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             recyclerView = itemView.findViewById(R.id.recycler_view);
             show_message = itemView.findViewById(R.id.show_message);
             time_box = itemView.findViewById(R.id.time_box);
+            txt_you = itemView.findViewById(R.id.txt_you);
+            txt_sender = itemView.findViewById(R.id.txt_sender);
 
             show_message.setOnClickListener(new View.OnClickListener() {
                 @Override

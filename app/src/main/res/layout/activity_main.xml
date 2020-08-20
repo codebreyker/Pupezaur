@@ -13,17 +13,68 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#E91E63"
+        android:background="@color/BasePink"
         android:theme="@style/AppTheme.AppBarOverlay">
-
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
-        android:id="@+id/textView"
+    <Spinner
+        android:id="@+id/dropdown_weekdays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:spinnerMode="dropdown"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:layout_above="@id/main_frame"/>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="295dp"
-        android:layout_alignParentBottom="true"
-        android:text="" />
+        android:layout_height="match_parent"
+        android:id="@+id/main_frame"
+        android:layout_below="@id/dropdown_weekdays"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:layout_marginTop="70dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/timetime_layout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/start_timer"
+                android:layout_toLeftOf="@id/end_timer"
+                android:layout_weight="4"
+                android:textSize="20dp"
+                android:text=""
+                android:gravity="end" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/end_timer"
+                android:layout_toRightOf="@id/start_timer"
+                android:textSize="20dp"
+                android:text=""
+                android:layout_weight="4"
+                android:gravity="fill_horizontal"/>
+
+        </LinearLayout>
+    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
@@ -33,18 +84,13 @@
         android:elevation="10dp"
         app:backgroundTint="@color/BasePink"
         android:src="@drawable/ic_button_add"
-        android:id="@+id/btn_add"/>
+        android:id="@+id/btn_add"
+        android:tooltipText="Add course"/>
 
-
-    <Spinner
+    <TimePicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textSize="20dp"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/dropdown_weekdays"
-        android:spinnerMode="dropdown"
-        android:textAlignment="center"
-        android:gravity="center_horizontal" />
+        android:timePickerMode="spinner"
+        android:visibility="gone"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

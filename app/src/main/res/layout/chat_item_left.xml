@@ -11,6 +11,15 @@
         android:id="@+id/llMessage">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_sender"
+            android:layout_marginLeft="5dp"
+            android:textColor="#fff"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/show_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -19,6 +28,7 @@
             android:padding="8dp"
             android:textSize="18dp"
             android:textColor="#fff"
+            android:layout_below="@id/txt_sender"
             android:background="@drawable/background_message_left" />
 
         <TextView
