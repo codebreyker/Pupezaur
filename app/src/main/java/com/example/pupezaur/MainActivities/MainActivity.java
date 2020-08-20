@@ -21,6 +21,7 @@ import androidx.fragment.app.DialogFragment;
 import com.example.pupezaur.Fragments.FragmentMonday;
 import com.example.pupezaur.Fragments.FragmentTuesday;
 import com.example.pupezaur.Fragments.TimePickerFragment;
+import com.example.pupezaur.PhoneConnection.PhoneSignin;
 import com.example.pupezaur.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -175,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 //            buton logout
             if (id == R.id.btn_logout) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent (MainActivity.this, SigninActivity.class));
+                startActivity(new Intent (MainActivity.this, PhoneSignin.class));
                 finish();
             }
 

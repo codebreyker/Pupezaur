@@ -19,7 +19,7 @@
 
         <!--pagina de register        -->
         <activity
-            android:name=".MainActivities.RegisterActivity"
+            android:name=".PhoneConnection.PhoneRegister"
             android:label="Astrid Swim">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +29,7 @@
 
         <!-- pagina de login -->
         <activity
-            android:name=".MainActivities.SigninActivity"
+            android:name=".PhoneConnection.PhoneSignin"
             android:label="Astrid Swim">
         </activity>
 

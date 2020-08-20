@@ -13,7 +13,8 @@
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:layout_below="@+id/toolbar"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
@@ -34,7 +35,7 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/email"
+            android:id="@+id/phone_number"
             android:inputType="phone"
             android:layout_marginTop="10dp"
             app:met_floatingLabel="normal"
@@ -44,10 +45,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/admin_phone_number"
-            android:inputType="textPassword"
+            android:inputType="phone"
             android:layout_marginTop="10dp"
             app:met_floatingLabel="normal"
-            android:hint="Admin Phone Number"/>
+            android:hint="Admin Phone Number"
+            android:visibility="gone"/>
 
         <Button
             android:layout_width="match_parent"
@@ -71,4 +73,37 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/phoneAuth"
+        android:orientation="vertical"
+        android:layout_below="@+id/llayout"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/codeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="100dp"
+        android:layout_margin="25dp"
+        android:hint="Enter code"
+        android:inputType="phone"
+        android:singleLine="true"
+        android:textColor="#000" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="Continue"
+        android:id="@+id/btn_continue"
+        android:layout_marginTop="10dp"
+        android:background="@color/BasePink"
+        android:textColor="#ffffff"
+        android:layout_below="@id/codeText"/>
+
+    </LinearLayout>
 </RelativeLayout>
