@@ -96,7 +96,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     @Override
     public int getItemViewType(int position) {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        Message message=messageList.get(position);
+        Message message = messageList.get(position);
         if (message.getName().equals(AllMethods.name)) {
             return MSG_TYPE_RIGHT;
         } else {

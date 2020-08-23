@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.pupezaur.PhoneConnection.PhoneRegister;
+import com.example.pupezaur.PhoneConnection.UserPhoneRegister;
 import com.example.pupezaur.Utils.AllMethods;
 import com.example.pupezaur.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -108,7 +108,7 @@ public class SigninActivity extends AppCompatActivity {
     btnregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-        Intent intent = new Intent(SigninActivity.this, PhoneRegister.class);
+        Intent intent = new Intent(SigninActivity.this, UserPhoneRegister.class);
         startActivity(intent);
         finish();
             }

@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
@@ -22,12 +23,16 @@ import com.example.pupezaur.Fragments.FragmentMonday;
 import com.example.pupezaur.Fragments.FragmentTuesday;
 import com.example.pupezaur.Fragments.TimePickerFragment;
 import com.example.pupezaur.PhoneConnection.PhoneSignin;
+import com.example.pupezaur.PhoneConnection.UserPhoneRegister;
 import com.example.pupezaur.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -69,8 +74,6 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.weekdays_array, R.layout.support_simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_weekdays.setAdapter(adapter);
-
-
         dropdown_weekdays.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -96,25 +99,19 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 callback = "for_start_time";
                 DialogFragment timePicker = new TimePickerFragment();
                 timePicker.show(getSupportFragmentManager(), "time picker");
-
             }
         });
 
-    }
+        //Posibil (SIGUR) sa crape daca nu exista in baza de date un user cu proprietatea isAdmin
 
-
-            //Posibil (SIGUR) sa crape daca nu exista in baza de date un user cu proprietatea isAdmin
-
-//
-//        databaseReference.child("Users").child(firebaseUser.getUid()).child("isAdmin").addValueEventListener(new ValueEventListener() {
+//        databaseReference.child("Admin").child(firebaseUser.getPhoneNumber()).child("isAdmin").addValueEventListener(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull DataSnapshot snapshot) {
 //                String admin = snapshot.getValue().toString();
 //                System.err.println(admin + "+++++++++++++++++++++++++");
-//                if(admin.equals("1")){
+//                if (admin.equals("1")) {
 //                    isAdmin = true;
-//                }
-//                else {
+//                } else {
 //                    isAdmin = false;
 //                }
 //                adminCheck();
@@ -122,10 +119,9 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 //
 //            @Override
 //            public void onCancelled(@NonNull DatabaseError error) {
-//
 //            }
 //        });
-
+    }
 
     void adminCheck(){
         if (isAdmin){
@@ -144,9 +140,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     @Override
     protected void onStart() {
         super.onStart();
-
     }
-
 
     //    meniul de setari
         @Override
@@ -176,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 //            buton logout
             if (id == R.id.btn_logout) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent (MainActivity.this, PhoneSignin.class));
+                startActivity(new Intent (MainActivity.this, UserPhoneRegister.class));
                 finish();
             }
 
@@ -213,7 +207,6 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             // set in mTimePicker1
 //            end_timer.setText(hour + ":" + minute);
         }
-
         //Dont forgot to reset callback
         callback = "for_end_time";
         }

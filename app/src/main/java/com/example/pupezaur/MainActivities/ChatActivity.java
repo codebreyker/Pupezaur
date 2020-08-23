@@ -11,11 +11,13 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pupezaur.R;
+import com.example.pupezaur.Utils.Admin;
 import com.example.pupezaur.Utils.AllMethods;
 import com.example.pupezaur.Utils.Message;
 import com.example.pupezaur.Utils.MessageAdapter;
@@ -44,8 +46,8 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     RecyclerView recyclerView;
     EditText textSend;
     ImageButton btnSend;
-    Button back_button;
     private String currentUserName;
+    String adminId;
 
 
     @Override
@@ -72,15 +74,16 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
-        final FirebaseUser currentUser=auth.getCurrentUser();
+        final FirebaseUser currentUser = auth.getCurrentUser();
         u.setUid(currentUser.getUid());
-        u.setEmail(currentUser.getEmail());
+//        u.setEmail(currentUser.getEmail());
+//        database.getReference("Admin").child(currentUser.getPhoneNumber()).addListenerForSingleValueEvent(new ValueEventListener() {
         database.getReference("Users").child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                u=dataSnapshot.getValue(User.class);
+                u = dataSnapshot.getValue(User.class);
                 u.setUid(currentUser.getUid());
-                AllMethods.name=u.getName();
+                AllMethods.name = u.getName();
 //                Log.e(TAG, "onDataChange: "+ AllMethods.name );
             }
             @Override
@@ -89,63 +92,79 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        databaseReference=database.getReference("message");
-        databaseReference.addChildEventListener(new ChildEventListener() {
+        database.getReference("Users").child(currentUser.getUid()).child("adminPhoneNumber").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Message message = dataSnapshot.getValue(Message.class);
-                message.setKey(dataSnapshot.getKey());
-                messageList.add(message);
-                displayMessages(messageList);
-            }
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                adminId = snapshot.getValue().toString();
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                Message message=dataSnapshot.getValue(Message.class);
-                message.setKey(dataSnapshot.getKey());
+                databaseReference = database.getReference("Chats").child(adminId);
+                databaseReference.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        Message message = dataSnapshot.getValue(Message.class);
+                        message.setKey(dataSnapshot.getKey());
+                        messageList.add(message);
+                        displayMessages(messageList);
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                        Message message=dataSnapshot.getValue(Message.class);
+                        message.setKey(dataSnapshot.getKey());
 //                Toast.makeText(DashboardActivity.this, "Message changed...", Toast.LENGTH_SHORT).show();
-                List<Message> newMessages=new ArrayList<>();
-                for (Message m:messageList){
-                    if(m.getKey().equals(message.getKey())){
-                        newMessages.add(message);
+                        List<Message> newMessages=new ArrayList<>();
+                        for (Message m:messageList){
+                            if(m.getKey().equals(message.getKey())){
+                                newMessages.add(message);
+                            }
+                            else{
+                                newMessages.add(m);
+                            }
+                        }
+                        messageList=newMessages;
+                        displayMessages(messageList);
                     }
-                    else{
-                        newMessages.add(m);
-                    }
-                }
-                messageList=newMessages;
-                displayMessages(messageList);
-            }
 
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                Message message=dataSnapshot.getValue(Message.class);
-                message.setKey(dataSnapshot.getKey());
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+                        Message message=dataSnapshot.getValue(Message.class);
+                        message.setKey(dataSnapshot.getKey());
 //                Toast.makeText(DashboardActivity.this, "Message deleted...", Toast.LENGTH_SHORT).show();
-                List<Message> newMessages=new ArrayList<>();
-                for (Message m:messageList){
-                    if(!m.getKey().equals(message.getKey())){
-                        newMessages.add(m);
+                        List<Message> newMessages=new ArrayList<>();
+                        for (Message m:messageList){
+                            if(!m.getKey().equals(message.getKey())){
+                                newMessages.add(m);
+                            }
+                        }
+                        messageList=newMessages;
+                        displayMessages(messageList);
                     }
-                }
-                messageList=newMessages;
-                displayMessages(messageList);
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
             }
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
+            public void onCancelled(@NonNull DatabaseError error) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
             }
         });
+
+//        databaseReference = database.getReference("Chats").child(adminId);
+//        databaseReference
+
     }
 
     private void displayMessages(List<Message> messages) {
         recyclerView.setLayoutManager(new LinearLayoutManager(ChatActivity.this));
         recyclerView.setHasFixedSize(true);
-        mAdapter=new MessageAdapter(ChatActivity.this,messages,databaseReference);
+        mAdapter=new MessageAdapter(ChatActivity.this, messages, databaseReference);
 //        this.recyclerView.scrollTo(0, this.recyclerView.getBottom());
         mAdapter.notifyItemInserted(messageList.size()-1);
         this.recyclerView.scrollToPosition(mAdapter.getItemCount()-1);

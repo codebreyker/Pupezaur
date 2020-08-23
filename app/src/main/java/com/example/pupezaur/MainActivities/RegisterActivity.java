@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pupezaur.PhoneConnection.PhoneSignin;
 import com.example.pupezaur.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -63,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegisterActivity.this, SigninActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, PhoneSignin.class);
                 startActivity(intent);
                 finish();
             }
@@ -121,15 +122,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 });
-        btnlogin = findViewById(R.id.btnlogin);
-        btnlogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(RegisterActivity.this, SigninActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+
+        }
     }
-}
 

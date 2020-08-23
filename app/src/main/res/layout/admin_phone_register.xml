@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.pupezaur.PhoneConnection.PhoneSignin"
-    android:theme="@style/AppTheme">
+    tools:context="com.example.pupezaur.PhoneConnection.UserPhoneRegister">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,15 +13,16 @@
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:layout_below="@+id/toolbar"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign In"
+            android:text="Create new account"
+            android:textColor="#000"
             android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="#000"/>
+            android:textStyle="bold"/>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
@@ -42,22 +42,24 @@
             android:hint="Phone Number"/>
 
         <Button
-            android:id="@+id/btn_signin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Register"
+            android:id="@+id/btn_register"
             android:layout_marginTop="10dp"
             android:background="@color/BasePink"
-            android:text="Sign In"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnregister"
-            android:text="Create account"
+            android:text="Already have an account?"
             android:layout_marginTop="10dp"
             android:textColor="#000"
-            android:onClick="onClick"/>
+            android:onClick="onClick"
+            android:id="@+id/btnlogin"
+            android:layout_gravity="center"
+            android:paddingLeft="10dp"/>
 
     </LinearLayout>
 
@@ -94,5 +96,4 @@
             android:layout_below="@id/codeText"/>
 
     </LinearLayout>
-
 </RelativeLayout>

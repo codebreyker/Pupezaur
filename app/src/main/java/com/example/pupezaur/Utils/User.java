@@ -1,10 +1,22 @@
+
 package com.example.pupezaur.Utils;
 
 public class User {
+    String aid;
     String uid;
     String name;
     String email;
     boolean isAdmin;
+
+    public User(){}
+
+    public String getAid() {
+        return aid;
+    }
+
+    public void setAid(String aid) {
+        this.aid = aid;
+    }
 
     public boolean isAdmin() {
         return isAdmin;
@@ -13,9 +25,6 @@ public class User {
     public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
-
-
-    public User(){}
 
     public String getUid() {
         return uid;
@@ -42,7 +51,7 @@ public class User {
         return "Users{" +
                 "uid='" + uid + '\'' +
                 ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
+                ", isAdmin='" + isAdmin + '\'' +
                 '}';
     }
 }
