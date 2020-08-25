@@ -71,7 +71,7 @@ public class FragmentMonday extends Fragment {
     }
 
     public void startHour(String s, LinearLayout layout) {
-
+        System.err.println(layout.getChildCount() + " aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         View v  = layout.getChildAt(layout.getChildCount()-1);
         start_timer = v.findViewById(R.id.start_timer);
 

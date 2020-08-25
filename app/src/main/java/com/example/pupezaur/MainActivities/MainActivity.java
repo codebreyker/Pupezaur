@@ -103,8 +103,10 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         recyclerView = findViewById(R.id.mondayRecycleView);
         dropdown_weekdays = findViewById(R.id.dropdown_weekdays);
         fragmentContainer = findViewById(R.id.main_frame);
-        placeHolder =  new LinearLayout(getBaseContext());
+        //placeHolder =  new LinearLayout(getBaseContext());
         view = getLayoutInflater().inflate(R.layout.schedule_item, fragmentContainer,true);
+        placeHolder = view.findViewById(R.id.layoutToAdd);
+        placeHolder.removeView(view);
 
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.weekdays_array, R.layout.support_simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -137,9 +139,9 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 //                LinearLayout placeHolder;
 //                LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-                placeHolder = view.findViewById(R.id.layoutToAdd);
+
 //                getLayoutInflater().inflate(R.layout.schedule_item, placeHolder, false);
-                placeHolder.removeView(view);
+
                 placeHolder.addView( getLayoutInflater().inflate(R.layout.schedule_item, null, false));
             }
         });
