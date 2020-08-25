@@ -1,4 +1,4 @@
-package com.example.pupezaur.PhoneConnection;
+package com.example.parentsapp.PhoneConnections;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pupezaur.MainActivities.MainActivity;
+import com.example.pupezaur.PhoneConnection.PhoneSignin;
 import com.example.pupezaur.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

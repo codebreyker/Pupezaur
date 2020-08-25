@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.pupezaur.R;
 import com.example.pupezaur.Fragments.ChatFragment;
-import com.example.pupezaur.Fragments.ScheduleFragment;
+import com.example.pupezaur.Fragments.FragmentMonday;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -34,7 +34,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new ScheduleFragment();
+                fragment = new FragmentMonday();
                 break;
             case 1:
                 fragment = new ChatFragment();

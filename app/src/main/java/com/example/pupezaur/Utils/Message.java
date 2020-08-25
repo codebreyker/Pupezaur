@@ -48,7 +48,7 @@ public class Message {
 
     @Override
     public String toString() {
-        return "Message{" +
+        return "Chats{" +
                 "message='" + message + '\'' +
                 ", name='" + name + '\'' +
                 ", key='" + key + '\'' +

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.pupezaur.PhoneConnection.UserPhoneRegister">
+    tools:context="com.example.pupezaur.com.example.parentsapp.UserPhoneRegister">
 
     <LinearLayout
         android:layout_width="match_parent"

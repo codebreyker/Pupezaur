@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.pupezaur.PhoneConnection.UserPhoneRegister;
+import com.example.parentsapp.PhoneConnections.UserPhoneRegister;
 import com.example.pupezaur.Utils.AllMethods;
 import com.example.pupezaur.R;
 import com.google.android.gms.tasks.OnCompleteListener;

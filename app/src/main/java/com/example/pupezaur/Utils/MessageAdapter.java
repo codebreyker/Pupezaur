@@ -30,7 +30,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public MessageAdapter(Context context, List<Message> messageList, DatabaseReference databaseReference) {
         this.context = context;
         this.messageList = messageList;
-        this.databaseReference=databaseReference;
+        this.databaseReference = databaseReference;
     }
 
     public void addMessage(Message message){
