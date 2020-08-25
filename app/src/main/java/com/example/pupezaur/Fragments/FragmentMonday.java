@@ -32,7 +32,8 @@ public class FragmentMonday extends Fragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.schedule_item, container, false);
+        View v = inflater.inflate(R.layout.fragment_monday, container, false);
+        //v.findViewById(R.id.layoutToAdd).setVisibility(View.INVISIBLE);
 
 
         // Inflate the layout for this fragment
@@ -70,16 +71,18 @@ public class FragmentMonday extends Fragment {
     }
 
     public void startHour(String s, LinearLayout layout) {
-//        if (schedule!=null) {
-        start_timer = layout.getChildAt(layout.getChildCount()).findViewById(R.id.linear_text).findViewById(R.id.start_timer);
-//        }
+
+        View v  = layout.getChildAt(layout.getChildCount()-1);
+        start_timer = v.findViewById(R.id.start_timer);
+
         start_timer.setText(s);
     }
 
     public void endHour(String s, LinearLayout layout) {
-//        if (schedule!=null) {
-            end_timer = layout.getChildAt(layout.getChildCount()).findViewById(R.id.linear_text).findViewById(R.id.end_timer);
-//        }
+
+        View v  = layout.getChildAt(layout.getChildCount()-1);
+        end_timer = v.findViewById(R.id.end_timer);
+
         end_timer.setText(s);
     }
 

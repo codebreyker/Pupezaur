@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -83,6 +84,8 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     private ArrayList<String> stringArrayList;
     private ArrayAdapter<String> stringArrayAdapter;
 
+    View view;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -100,7 +103,8 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         recyclerView = findViewById(R.id.mondayRecycleView);
         dropdown_weekdays = findViewById(R.id.dropdown_weekdays);
         fragmentContainer = findViewById(R.id.main_frame);
-        placeHolder = findViewById(R.id.layoutToAdd);
+        placeHolder =  new LinearLayout(getBaseContext());
+        view = getLayoutInflater().inflate(R.layout.schedule_item, fragmentContainer,true);
 
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.weekdays_array, R.layout.support_simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -131,8 +135,11 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 //                    DialogFragment timePicker = new TimePickerFragment();
 //                    timePicker.show(getSupportFragmentManager(), "time picker");
 //                LinearLayout placeHolder;
-                placeHolder = findViewById(R.id.layoutToAdd);
+//                LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+                placeHolder = view.findViewById(R.id.layoutToAdd);
 //                getLayoutInflater().inflate(R.layout.schedule_item, placeHolder, false);
+                placeHolder.removeView(view);
                 placeHolder.addView( getLayoutInflater().inflate(R.layout.schedule_item, null, false));
             }
         });
