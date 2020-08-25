@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     FloatingActionButton btn_add;
     Spinner dropdown_weekdays;
     EditText editText;
+    String startTimeString,endTimeString;
+
 
     FrameLayout fragmentContainer;
     ListView lv;
@@ -107,6 +109,8 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         view = getLayoutInflater().inflate(R.layout.schedule_item, fragmentContainer,true);
         placeHolder = view.findViewById(R.id.layoutToAdd);
         placeHolder.removeView(view);
+        startTimeString="";
+        endTimeString="";
 
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.weekdays_array, R.layout.support_simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -141,8 +145,15 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 
 
 //                getLayoutInflater().inflate(R.layout.schedule_item, placeHolder, false);
+                if(startTimeString.isEmpty() || endTimeString.isEmpty()){
 
-                placeHolder.addView( getLayoutInflater().inflate(R.layout.schedule_item, null, false));
+                }else {
+                    placeHolder.addView( getLayoutInflater().inflate(R.layout.schedule_item, null, false));
+                    startTimeString ="";
+                    endTimeString = "";
+                }
+
+
             }
         });
 
@@ -284,6 +295,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 SimpleDateFormat f24Hour = new SimpleDateFormat("HH:mm");
                 try {
                     Date date = f24Hour.parse(hour + ":" + minute);
+                    startTimeString = f24Hour.format(date);
                     fragmentMonday.startHour(f24Hour.format(date), placeHolder);
 //                start_timer.setText(f24Hour.format(date) + " - ");
                 } catch (ParseException e) {
@@ -296,6 +308,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 SimpleDateFormat f24Hour = new SimpleDateFormat("HH:mm");
                 try {
                     Date date = f24Hour.parse(hour + ":" + minute);
+                    endTimeString = f24Hour.format(date);
                     fragmentMonday.endHour(f24Hour.format(date), placeHolder);
 //                end_timer.setText(f24Hour.format(date));
                 } catch (ParseException e) {
