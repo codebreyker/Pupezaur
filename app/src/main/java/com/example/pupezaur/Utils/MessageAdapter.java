@@ -1,25 +1,35 @@
 package com.example.pupezaur.Utils;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pupezaur.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
 
     Context context;
     List<Message> messageList;
+    private static MessageAdapter instance;
+    private HashMap<String, MessageAdapter> MessageAdapterHashMap;
 
     DatabaseReference databaseReference;
     FirebaseUser firebaseUser;
@@ -49,17 +59,39 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         }
     }
 
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         Message message = messageList.get(position);
         if (message.getName().equals(AllMethods.name)) {
             holder.txt_you.setText("You");
             holder.show_message.setText(message.getMessage());
             holder.time_box.setText(DateFormat.format("HH:mm - MMM.dd.yyyy", message.getMessageTime()));
+                        holder.show_message.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    CharSequence options[] = new CharSequence[]{
+                            "Yes",
+                            "Cancel"
+                    };
+                    AlertDialog.Builder builder = new AlertDialog.Builder(holder.show_message.getContext());
+                    builder.setTitle("Delete message?");
+
+                    builder.setItems(options, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            if (i == 0) {
+                                deleteMessage(position, holder);
+                            } else if (i == 1) { }
+                        }
+                    });
+                    builder.show();
+                    return false;
+                }
+            });
         } else {
             holder.txt_sender.setText(message.getName());
             holder.show_message.setText(message.getMessage());
             holder.time_box.setText(DateFormat.format("HH:mm - MMM.dd.yyyy", message.getMessageTime()));
-            }
+        }
     }
 
     @Override
@@ -83,7 +115,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             show_message.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (time_box.getVisibility() == View.VISIBLE){
+                    if (time_box.getVisibility() == View.VISIBLE) {
                         time_box.setVisibility(View.GONE);
                     } else {
                         time_box.setVisibility(View.VISIBLE);
@@ -102,6 +134,20 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         } else {
             return MSG_TYPE_LEFT;
         }
+    }
+
+    public void deleteMessage (final int position, final ViewHolder holder){
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        rootRef.child("Chats").child(firebaseUser.getPhoneNumber()).child(messageList.get(position).getKey()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(holder.show_message.getContext(), "Message deleted", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(holder.show_message.getContext(), "Message could not be deleted", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
 

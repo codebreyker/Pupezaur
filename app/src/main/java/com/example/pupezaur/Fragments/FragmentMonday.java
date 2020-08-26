@@ -23,23 +23,13 @@ import java.util.Calendar;
 public class FragmentMonday extends Fragment {
 
     TextView start_timer, end_timer;
-    ListView listView;
-    private ArrayList<String> stringArrayList;
-    FloatingActionButton btn_add;
-    ViewGroup placeHolder, v;
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View v = inflater.inflate(R.layout.fragment_monday, container, false);
-        //v.findViewById(R.id.layoutToAdd).setVisibility(View.INVISIBLE);
-
-
         // Inflate the layout for this fragment
-            return v;
-
-
+        View v = inflater.inflate(R.layout.schedule_item, container, false);
+        return v;
     }
 
     @Override
@@ -48,21 +38,6 @@ public class FragmentMonday extends Fragment {
 
         start_timer = getView().findViewById(R.id.start_timer);
         end_timer = getView().findViewById(R.id.end_timer);
-//        listView = getView().findViewById(R.id.listView);
-
-//        btn_add = view.findViewById(R.id.btn_add);
-//        btn_add.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                    callback = "for_start_time";
-////                    DialogFragment timePicker = new TimePickerFragment();
-////                    timePicker.show(getSupportFragmentManager(), "time picker");
-//                ViewGroup placeHolder;
-//                placeHolder = getView().findViewById(R.id.layoutToAdd);
-//                getLayoutInflater().inflate(R.layout.schedule_item, placeHolder, false);
-//            }
-//        });
-
     }
 
     @Override
@@ -74,19 +49,14 @@ public class FragmentMonday extends Fragment {
         System.err.println(layout.getChildCount() + " aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         View v  = layout.getChildAt(layout.getChildCount()-1);
         start_timer = v.findViewById(R.id.start_timer);
-
         start_timer.setText(s);
     }
 
     public void endHour(String s, LinearLayout layout) {
-
         View v  = layout.getChildAt(layout.getChildCount()-1);
         end_timer = v.findViewById(R.id.end_timer);
-
         end_timer.setText(s);
     }
-
-
 
 
 //        Calendar calendar = Calendar.getInstance();

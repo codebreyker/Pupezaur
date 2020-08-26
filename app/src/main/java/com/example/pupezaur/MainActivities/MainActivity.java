@@ -1,7 +1,6 @@
 package com.example.pupezaur.MainActivities;
 
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,13 +9,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -25,18 +21,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.parentsapp.MainActivities.UserChatActivity;
 import com.example.pupezaur.Fragments.FragmentMonday;
+import com.example.pupezaur.Fragments.FragmentTuesday;
 import com.example.pupezaur.Fragments.TimePickerFragment;
 import com.example.parentsapp.PhoneConnections.UserPhoneRegister;
+import com.example.pupezaur.PhoneConnection.AdminPhoneRegister;
 import com.example.pupezaur.R;
 import com.example.pupezaur.Utils.Admin;
 import com.example.pupezaur.Utils.AllMethods;
 import com.example.pupezaur.Utils.ScheduleAdapter;
 import com.example.pupezaur.Utils.ScheduleUtil;
+import com.example.pupezaur.Utils.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -49,7 +48,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -59,34 +57,18 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     DatabaseReference databaseReference;
     FirebaseDatabase database;
     Admin admin;
-
     boolean isAdmin;
-    int i = 0;
-    Context context;
-
-    ScheduleAdapter mAdapter;
-    List<ScheduleUtil> scheduleList;
-    RecyclerView recyclerView;
-    View schedule;
 
     TextView start_timer, end_timer, textView;
     FloatingActionButton btn_add;
     Spinner dropdown_weekdays;
-    EditText editText;
-    String startTimeString,endTimeString;
 
-
-    FrameLayout fragmentContainer;
-    ListView lv;
-    ArrayList<String> arrayList;
-    ArrayAdapter<String> adapter;
+    FrameLayout fragmentContainer, monday_frame;
     LinearLayout placeHolder;
-    private ViewGroup container;
-    ListView listView;
-    private ArrayList<String> stringArrayList;
-    private ArrayAdapter<String> stringArrayAdapter;
+    RecyclerView mondayRecycleView;
 
-    View view;
+    String startTimeString, endTimeString, day;
+    View view, view2;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,19 +78,23 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         firebaseUser = auth.getCurrentUser();
         database = FirebaseDatabase.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
+
         admin = new Admin();
 
         start_timer = findViewById(R.id.start_timer);
         end_timer = findViewById(R.id.end_timer);
         btn_add = findViewById(R.id.btn_add);
-//        listView = findViewById(R.id.listView);
-        recyclerView = findViewById(R.id.mondayRecycleView);
+
         dropdown_weekdays = findViewById(R.id.dropdown_weekdays);
         fragmentContainer = findViewById(R.id.main_frame);
-        //placeHolder =  new LinearLayout(getBaseContext());
-        view = getLayoutInflater().inflate(R.layout.schedule_item, fragmentContainer,true);
+        monday_frame = findViewById(R.id.monday_frame);
+        mondayRecycleView = findViewById(R.id.mondayRecycleView);
+
+        view = getLayoutInflater().inflate(R.layout.schedule_item, monday_frame, true);
+        view2 = getLayoutInflater().inflate(R.layout.schedule_item, monday_frame, true);
         placeHolder = view.findViewById(R.id.layoutToAdd);
         placeHolder.removeView(view);
+
         startTimeString="";
         endTimeString="";
 
@@ -120,10 +106,13 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new FragmentMonday(), "ScheduleFragment").commit();
+                        day = "Monday";
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new FragmentMonday(), "FragmentMonday").commit();
                         break;
                     case 1:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Fragment(), "Fragment").commit();
+                        day = "Tuesday";
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new FragmentTuesday(), "FragmentTuesday").commit();
+//                        view = getLayoutInflater().inflate(R.layout.schedule_item, mondayRecycleView, true);
                         break;
                 }
             }
@@ -137,60 +126,21 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                    callback = "for_start_time";
-//                    DialogFragment timePicker = new TimePickerFragment();
-//                    timePicker.show(getSupportFragmentManager(), "time picker");
 //                LinearLayout placeHolder;
 //                LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-
 //                getLayoutInflater().inflate(R.layout.schedule_item, placeHolder, false);
                 if(startTimeString.isEmpty() || endTimeString.isEmpty()){
-
+//
                 }else {
-                    placeHolder.addView( getLayoutInflater().inflate(R.layout.schedule_item, null, false));
-                    startTimeString ="";
+                    placeHolder.addView(getLayoutInflater().inflate(R.layout.schedule_item, null, false));
+                    startTimeString = "";
                     endTimeString = "";
+                    callback = "for_start_time";
+                    DialogFragment timePicker = new TimePickerFragment();
+                    timePicker.show(getSupportFragmentManager(), "time picker");
                 }
-
-
             }
         });
-
-
-                FirebaseDatabase.getInstance().getReference("Schedule").child(firebaseUser.getPhoneNumber()).addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                    }
-
-                    @Override
-                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-        stringArrayList = new ArrayList<String>();
-        for (int i=0; i<2; i++){
-            stringArrayList.add("Row" + i);
-        }
-        stringArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, stringArrayList);
-
-
 
         //Posibil (SIGUR) sa crape daca nu exista in baza de date un user cu proprietatea isAdmin
 
@@ -232,8 +182,8 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         super.onStart();
         final FirebaseUser currentUser = auth.getCurrentUser();
         admin.setUid(currentUser.getPhoneNumber());
-//        u.setEmail(currentUser.getEmail());
-//        database.getReference("Admin").child(currentUser.getPhoneNumber()).addListenerForSingleValueEvent(new ValueEventListener() {
+
+//        database.getReference("Users").orderByChild(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener(){
         database.getReference("Admin").child(currentUser.getPhoneNumber()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -276,17 +226,16 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 //            buton logout
             if (id == R.id.btn_logout) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent (MainActivity.this, UserPhoneRegister.class));
+                startActivity(new Intent (MainActivity.this, AdminPhoneRegister.class));
                 finish();
             }
             return super.onOptionsItemSelected(item);
         }
 
-
     String callback = "";
     @Override
     public void onTimeSet(TimePicker timePicker, final int hour, final int minute) {
-        FragmentMonday fragmentMonday = (FragmentMonday) getSupportFragmentManager().findFragmentByTag("ScheduleFragment");
+        FragmentMonday fragmentMonday = (FragmentMonday) getSupportFragmentManager().findFragmentByTag("FragmentMonday");
         if (TextUtils.isEmpty(callback))
             return;
 
@@ -296,7 +245,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 try {
                     Date date = f24Hour.parse(hour + ":" + minute);
                     startTimeString = f24Hour.format(date);
-                    fragmentMonday.startHour(f24Hour.format(date), placeHolder);
+                    fragmentMonday.startHour(startTimeString, placeHolder);
 //                start_timer.setText(f24Hour.format(date) + " - ");
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -320,13 +269,6 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             //Dont forgot to reset callback
             callback = "for_end_time";
     }
-
-
-        public void displaySchedule (List<ScheduleUtil> scheduleList){
-            recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-            mAdapter = new ScheduleAdapter();
-            this.recyclerView.setAdapter(mAdapter);
-        }
 
     public void onClick(View view) {
         callback = "for_start_time";

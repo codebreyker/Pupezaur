@@ -19,7 +19,7 @@
 
         <!--pagina de register        -->
         <activity
-            android:name="com.example.pupezaur.PhoneConnection.AdminPhoneRegister"
+            android:name=".PhoneConnection.AdminPhoneRegister"
             android:label="Astrid Swim">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

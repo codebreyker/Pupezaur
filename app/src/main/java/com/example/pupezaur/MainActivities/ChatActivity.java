@@ -1,17 +1,13 @@
 package com.example.pupezaur.MainActivities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,7 +36,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     FirebaseDatabase database;
     DatabaseReference databaseReference;
     MessageAdapter mAdapter;
-    User u;
+    Admin u;
     List<Message> messageList;
 
     RecyclerView recyclerView;
@@ -59,7 +55,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         auth = FirebaseAuth.getInstance();
         currentUserName = auth.getCurrentUser().getUid();
         database = FirebaseDatabase.getInstance();
-        u = new User();
+        u = new Admin();
 
         recyclerView = findViewById(R.id.recycler_view);
         textSend = findViewById(R.id.text_send);
@@ -75,12 +71,11 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         super.onStart();
         final FirebaseUser currentUser = auth.getCurrentUser();
         u.setUid(currentUser.getPhoneNumber());
-//        u.setEmail(currentUser.getEmail());
-//        database.getReference("Admin").child(currentUser.getPhoneNumber()).addListenerForSingleValueEvent(new ValueEventListener() {
+
         database.getReference("Admin").child(currentUser.getPhoneNumber()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                u = dataSnapshot.getValue(User.class);
+                u = dataSnapshot.getValue(Admin.class);
                 u.setUid(currentUser.getPhoneNumber());
                 AllMethods.name = u.getName();
 //                Log.e(TAG, "onDataChange: "+ AllMethods.name );
@@ -149,21 +144,20 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.setHasFixedSize(true);
         mAdapter = new MessageAdapter(ChatActivity.this, messages, databaseReference);
 //        this.recyclerView.scrollTo(0, this.recyclerView.getBottom());
-        mAdapter.notifyItemInserted(messageList.size()-1);
-        this.recyclerView.scrollToPosition(mAdapter.getItemCount()-1);
-        ((LinearLayoutManager)recyclerView.getLayoutManager()).setStackFromEnd(true);
+        mAdapter.notifyItemInserted(messageList.size() - 1);
+        this.recyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
+        ((LinearLayoutManager) recyclerView.getLayoutManager()).setStackFromEnd(true);
         this.recyclerView.setAdapter(mAdapter);
 
     }
 
     @Override
     public void onClick(View view) {
-        if(!TextUtils.isEmpty(textSend.getText().toString())) {
+        if (!TextUtils.isEmpty(textSend.getText().toString())) {
             Message message = new Message(textSend.getText().toString(), u.getName());
             textSend.setText("");
             databaseReference.push().setValue(message);
-        }
-        else {
+        } else {
             Toast.makeText(this, "You cannot send an empty message", Toast.LENGTH_SHORT).show();
         }
     }
@@ -171,7 +165,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        messageList=new ArrayList<>();
+        messageList = new ArrayList<>();
     }
 
     @Override
@@ -186,8 +180,6 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onBackPressed() {
         super.onBackPressed();
-//        startActivity(new Intent(this, MainActivity.class);
-//        finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
