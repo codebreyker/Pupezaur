@@ -1,4 +1,4 @@
-package com.example.pupezaur.FragmentHolder;
+package com.example.parentsapp.ui.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -31,9 +31,8 @@ public class PlaceholderFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
         pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
-        int index = 1;
+        int index = 7;
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
@@ -48,11 +47,11 @@ public class PlaceholderFragment extends Fragment {
         switch(getArguments().getInt(ARG_SECTION_NUMBER))
         {
             case 1:
-                rootView = inflater.inflate(R.layout.frag1_layout, container, false);
+                rootView = inflater.inflate(R.layout.fragment_monday, container, false);
                 break;
 
             case 2:
-                rootView = inflater.inflate(R.layout.activity_message, container, false);
+                rootView = inflater.inflate(R.layout.fragment_monday, container, false);
                 break;        }
 //        rootView = inflater.inflate(R.layout.fragment_message, container, false);
 

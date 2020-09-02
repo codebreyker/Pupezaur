@@ -1,7 +1,18 @@
 <resources>
-    <string name="tab_text_1">Schedule</string>
-    <string name="tab_text_2">Chat</string>
+    <string name="tab_text_1">Monday</string>
+    <string name="tab_text_2">Tuesday</string>
+    <string name="tab_text_3">Wednesday</string>
+    <string name="tab_text_4">Thursday</string>
+    <string name="tab_text_5">Friday</string>
+    <string name="tab_text_6">Saturday</string>
+    <string name="tab_text_7">Sunday</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">Astrid Swim</string>
+
+    <string-array name="fragments">
+        <item>Monday</item>
+        <item>Tuesday</item>
+    </string-array>
+    <string name="title_activity_parent_main">ParentActivityMain</string>
 
 </resources>

@@ -21,15 +21,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
 
     Context context;
     List<Message> messageList;
-    private static MessageAdapter instance;
-    private HashMap<String, MessageAdapter> MessageAdapterHashMap;
 
     DatabaseReference databaseReference;
     FirebaseUser firebaseUser;

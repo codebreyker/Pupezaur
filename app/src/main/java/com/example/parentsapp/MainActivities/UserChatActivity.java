@@ -72,7 +72,6 @@ public class UserChatActivity extends AppCompatActivity implements View.OnClickL
         super.onStart();
         final FirebaseUser currentUser = auth.getCurrentUser();
         u.setUid(currentUser.getUid());
-//        u.setEmail(currentUser.getEmail());
 //        database.getReference("Admin").child(currentUser.getPhoneNumber()).addListenerForSingleValueEvent(new ValueEventListener() {
         database.getReference("Users").child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -151,10 +150,6 @@ public class UserChatActivity extends AppCompatActivity implements View.OnClickL
 
             }
         });
-
-//        databaseReference = database.getReference("Chats").child(adminId);
-//        databaseReference
-
     }
 
     private void displayMessages(List<Message> messages) {
@@ -199,8 +194,6 @@ public class UserChatActivity extends AppCompatActivity implements View.OnClickL
 
     public void onBackPressed() {
         super.onBackPressed();
-//        startActivity(new Intent(this, MainActivity.class);
-//        finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 

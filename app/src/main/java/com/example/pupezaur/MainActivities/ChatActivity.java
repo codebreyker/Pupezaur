@@ -17,7 +17,6 @@ import com.example.pupezaur.Utils.Admin;
 import com.example.pupezaur.Utils.AllMethods;
 import com.example.pupezaur.Utils.Message;
 import com.example.pupezaur.Utils.MessageAdapter;
-import com.example.pupezaur.Utils.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -63,7 +62,6 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
         btnSend.setOnClickListener(this);
         messageList = new ArrayList<>();
-
     }
 
     @Override

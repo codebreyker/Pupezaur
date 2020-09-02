@@ -13,9 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.pupezaur.MainActivities.MainActivity;
+import com.example.pupezaur.Days.Monday;
 import com.example.pupezaur.R;
-import com.example.pupezaur.Utils.Message;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -35,7 +34,6 @@ import java.util.concurrent.TimeUnit;
 public class AdminPhoneRegister extends AppCompatActivity {
 
     private String checker = "", phoneNumber = "", smsCode = "";
-    String adminPhoneNumber;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private String verificationId;
     private PhoneAuthProvider.ForceResendingToken resendingToken;
@@ -56,7 +54,7 @@ public class AdminPhoneRegister extends AppCompatActivity {
         super.onStart();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
-            Intent intent = new Intent(AdminPhoneRegister.this, MainActivity.class);
+            Intent intent = new Intent(AdminPhoneRegister.this, Monday.class);
             startActivity(intent);
             finish();
         }
@@ -84,16 +82,6 @@ public class AdminPhoneRegister extends AppCompatActivity {
 
         FirebaseAuthSettings firebaseAuthSettings = auth.getFirebaseAuthSettings();
         firebaseAuthSettings.setAutoRetrievedSmsCodeForPhoneNumber(phoneNumber, smsCode);
-
-        btnlogin = findViewById(R.id.btnlogin);
-        btnlogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AdminPhoneRegister.this, PhoneSignin.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,7 +192,7 @@ public class AdminPhoneRegister extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Intent intent = new Intent(AdminPhoneRegister.this, MainActivity.class);
+                                Intent intent = new Intent(AdminPhoneRegister.this, Monday.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                                 finish();

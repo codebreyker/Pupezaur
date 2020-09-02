@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.pupezaur">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,43 +16,81 @@
         android:roundIcon="@mipmap/launcher_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">
 
-        <!--pagina de register        -->
+        <!-- pagina de register -->
         <activity
             android:name=".PhoneConnection.AdminPhoneRegister"
             android:label="Astrid Swim">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <!-- pagina de login -->
-        <activity
-            android:name=".PhoneConnection.PhoneSignin"
-            android:label="Astrid Swim">
-        </activity>
 
-<!--        pagina principala-->
+        <!-- pagina principala -->
         <activity
-            android:name=".MainActivities.MainActivity"
-            android:label="Astrid Swim">
-        </activity>
+            android:name=".Days.Monday"
+            android:label="Astrid Swim"></activity>
+        <activity
+            android:name=".Days.Tuesday"
+            android:label="Astrid Swim"></activity>
+        <activity
+            android:name=".Days.Wednesday"
+            android:label="Astrid Swim"></activity>
+        <activity
+            android:name=".Days.Thursday"
+            android:label="Astrid Swim"></activity>
+        <activity
+            android:name=".Days.Friday"
+            android:label="Astrid Swim"></activity>
+        <activity
+            android:name=".Days.Saturday"
+            android:label="Astrid Swim"></activity>
+        <activity
+            android:name=".Days.Sunday"
+            android:label="Astrid Swim"></activity>
 
-        <!-- pagina de chat-->
+        <!-- pagina de chat -->
         <activity
             android:name=".MainActivities.ChatActivity"
-            android:windowSoftInputMode="adjustResize"
             android:label="Chat"
-            android:parentActivityName=".MainActivities.MainActivity"/>
+            android:parentActivityName=".Days.Monday"
+            android:windowSoftInputMode="adjustResize" />
 
         <!-- pagina de setari -->
         <activity
             android:name=".MainActivities.SettingsActivity"
             android:label="Settings"
-            android:parentActivityName=".MainActivities.MainActivity" />
+            android:parentActivityName=".Days.Monday" />
+
+<!--        Parent app-->
+
+<!--        pagina de login-->
+        <activity
+            android:name="com.example.parentsapp.PhoneConnections.UserPhoneRegister"
+            android:label="Astrid Swim">
+
+
+        </activity>
+<!--        pagina principala-->
+        <activity
+            android:name="com.example.parentsapp.MainActivities.ParentActivityMain"
+            android:label="Astrid Swim">
+        </activity>
+<!--        pagina de chat-->
+        <activity
+            android:name="com.example.parentsapp.MainActivities.UserChatActivity"
+            android:label="Chat">
+        </activity>
 
     </application>
+
+
+
 
 </manifest>

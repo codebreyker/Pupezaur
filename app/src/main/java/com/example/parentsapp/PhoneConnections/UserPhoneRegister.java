@@ -13,8 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.pupezaur.MainActivities.MainActivity;
-import com.example.pupezaur.PhoneConnection.PhoneSignin;
+import com.example.parentsapp.MainActivities.ParentActivityMain;
 import com.example.pupezaur.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -60,7 +59,7 @@ public class UserPhoneRegister extends AppCompatActivity {
         super.onStart();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
-            Intent intent = new Intent(UserPhoneRegister.this, MainActivity.class);
+            Intent intent = new Intent(UserPhoneRegister.this, ParentActivityMain.class);
             startActivity(intent);
             finish();
         }
@@ -71,7 +70,7 @@ public class UserPhoneRegister extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_phone_register);
 
-        getSupportActionBar().setTitle("Register");
+        getSupportActionBar().setTitle("Register/Login");
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         username = findViewById(R.id.username);
@@ -89,23 +88,13 @@ public class UserPhoneRegister extends AppCompatActivity {
         FirebaseAuthSettings firebaseAuthSettings = auth.getFirebaseAuthSettings();
         firebaseAuthSettings.setAutoRetrievedSmsCodeForPhoneNumber(phoneNumber, smsCode);
 
-        btnlogin = findViewById(R.id.btnlogin);
-        btnlogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserPhoneRegister.this, PhoneSignin.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 //          String aid = firebaseUser.getUid();
 //          String aid = adminPhoneNumber;
-          String phoneNumber = phone_number.getText().toString();
+            String phoneNumber = phone_number.getText().toString();
 
                 if (TextUtils.isEmpty(phoneNumber)) {
                     Toast.makeText(UserPhoneRegister.this, "Please write a valid phone number", Toast.LENGTH_SHORT).show();
@@ -188,7 +177,7 @@ public class UserPhoneRegister extends AppCompatActivity {
                             loadingBar.setTitle("Code verification");
                             loadingBar.setMessage("Please wait to verify code number");
                             loadingBar.setCanceledOnTouchOutside(false);
-                            loadingBar.show();
+//                            loadingBar.show();
 
                             PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, verificationCode);
                             signInWithPhoneAuthCredential(credential);
@@ -227,7 +216,7 @@ public class UserPhoneRegister extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Intent intent = new Intent(UserPhoneRegister.this, MainActivity.class);
+                            Intent intent = new Intent(UserPhoneRegister.this, ParentActivityMain.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                             finish();

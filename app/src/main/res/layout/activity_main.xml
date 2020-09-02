@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,54 +8,133 @@
     android:background="#FFFFFF"
     android:theme="@android:style/Animation.Activity"
     style="@style/CustomActivityAnimation"
-    tools:context=".MainActivities.MainActivity">
+    tools:context=".Days.Monday">
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_below="@id/days_relativelayout"-->
+<!--        android:id="@+id/schedule_recyclerview"/>-->
+
+    <FrameLayout
+        android:id="@+id/main_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/days_relativelayout"/>
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/BasePink"
+        android:background="@color/BaseTurquoise"
         android:theme="@style/AppTheme.AppBarOverlay">
     </com.google.android.material.appbar.AppBarLayout>
 
-    <Spinner
-        android:id="@+id/dropdown_weekdays"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:spinnerMode="dropdown"
-        android:textAlignment="center"
-        android:textSize="20dp"
-        android:layout_above="@id/main_frame"/>
-
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/main_frame"
-        android:layout_below="@id/dropdown_weekdays">
+        android:layout_height="wrap_content"
+        android:id="@+id/days_relativelayout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:padding="5dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linear_layout_weekdays">
 
-    </FrameLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_monday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:tooltipText="Monday"
+            app:backgroundTint="@color/White"
+            android:src="@drawable/ic_button_monday_black"
+            app:fabSize="mini" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_tuesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:tooltipText="Tuesday"
+            app:backgroundTint="@color/White"
+            android:src="@drawable/ic_button_tuandthu_black"
+            app:fabSize="mini" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_wednesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:tooltipText="Wednesday"
+            app:backgroundTint="@color/White"
+            android:src="@drawable/ic_button_wednesday_black"
+            app:fabSize="mini" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_thursday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:tooltipText="Thursday"
+            app:backgroundTint="@color/White"
+            android:src="@drawable/ic_button_tuandthu_black"
+            app:fabSize="mini" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_friday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:tooltipText="Friday"
+            app:backgroundTint="@color/White"
+            android:src="@drawable/ic_button_friday_black"
+            app:fabSize="mini" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_saturday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:tooltipText="Saturday"
+            app:backgroundTint="@color/White"
+            android:src="@drawable/ic_button_satandsun_black"
+            app:fabSize="mini" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_sunday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:tooltipText="Sunday"
+            app:backgroundTint="@color/White"
+            android:src="@drawable/ic_button_satandsun_black"
+            app:fabSize="mini" />
+
+    </LinearLayout>
+</RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_gravity="end|bottom"
         android:layout_margin="15dp"
         android:elevation="10dp"
-        app:backgroundTint="@color/BasePink"
+        app:backgroundTint="@color/BaseTurquoise"
         android:src="@drawable/ic_button_add"
         android:id="@+id/btn_add"
-        android:tooltipText="Add course"/>
+        android:tooltipText="Add course"
+        android:onClick="onClick"
+        android:layout_alignParentRight="true" />
 
-    <TimePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:timePickerMode="spinner"
-        android:visibility="gone"/>
+<!--    <androidx.viewpager.widget.ViewPager-->
+<!--        android:id="@+id/view_pager"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>

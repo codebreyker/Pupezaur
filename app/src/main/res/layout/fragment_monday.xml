@@ -1,27 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/mondayRelativeLayout">
+    android:background="#FFFFFF"
+    android:theme="@android:style/Animation.Activity"
+    style="@style/CustomActivityAnimation">
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:id="@+id/mondayRecyclerView"-->
+<!--        android:layout_below="@id/dropdown_weekdays"/>-->
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/BasePink"
+        android:theme="@style/AppTheme.AppBarOverlay">
+    </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
+        android:id="@+id/monday_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/monday_frame">
+        android:layout_below="@id/linear_layout_weekdays">
 
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="end|bottom"-->
-<!--            android:layout_margin="15dp"-->
-<!--            android:elevation="10dp"-->
-<!--            app:backgroundTint="@color/BasePink"-->
-<!--            android:src="@drawable/ic_button_add"-->
-<!--            android:id="@+id/btn_add"-->
-<!--            android:tooltipText="Add course"/>-->
+<!--    <Spinner-->
+<!--        android:id="@+id/dropdown_weekdays"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:spinnerMode="dropdown"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textSize="20dp"-->
+<!--        android:layout_above="@id/main_frame"/>-->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="15dp"
+        android:elevation="10dp"
+        app:backgroundTint="@color/BasePink"
+        android:src="@drawable/ic_button_add"
+        android:id="@+id/btn_add"
+        android:tooltipText="Add course"
+        android:onClick="onClick"/>
 
     </FrameLayout>
 
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:timePickerMode="spinner"
+        android:visibility="gone"/>
 
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

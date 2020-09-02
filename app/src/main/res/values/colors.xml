@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="BasePink">#FFE484A5</color>
+    <color name="Black">#000</color>
+    <color name="White">#fff</color>
+    <color name="BaseTurquoise">#32a891</color>
 </resources>

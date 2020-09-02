@@ -1,16 +1,24 @@
 package com.example.pupezaur.Utils;
 
-public class ScheduleUtil {
+public class Schedule {
+    String id;
     String startHour;
     String endHour;
-    String schedule;
+    String key;
 
-    public ScheduleUtil() {}
+    public Schedule() {}
 
-    public ScheduleUtil(String startHour, String endHour, String schedule) {
+    public Schedule(String startHour, String endHour) {
         this.startHour = startHour;
         this.endHour = endHour;
-        this.schedule = schedule;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getStartHour() {
@@ -29,20 +37,21 @@ public class ScheduleUtil {
         this.endHour = endHour;
     }
 
-    public String getSchedule() {
-        return schedule;
+    public String getKey() {
+        return key;
     }
 
-    public void setSchedule(String schedule) {
-        this.schedule = schedule;
+    public void setKey(String key) {
+        this.key = key;
     }
 
     @Override
     public String toString() {
         return "Schedule{" +
-                "schedule='" + schedule + '\'' +
+                "id='" + id + '\'' +
                 ", startHour='" + startHour + '\'' +
                 ", endHour='" + endHour + '\'' +
+                ", key='" + key + '\'' +
                 '}';
     }
 }
