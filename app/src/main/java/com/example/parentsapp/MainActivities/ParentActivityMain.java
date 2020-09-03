@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.parentsapp.PhoneConnections.UserPhoneRegister;
-import com.example.pupezaur.MainActivities.ChatActivity;
 import com.example.pupezaur.MainActivities.SettingsActivity;
 import com.example.pupezaur.R;
 import com.example.pupezaur.Utils.AllMethods;
@@ -21,7 +20,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.example.parentsapp.ui.main.SectionsPagerAdapter;
+import com.example.parentsapp.ui.FragmentHolder.SectionsPagerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -126,7 +125,7 @@ public class ParentActivityMain extends AppCompatActivity {
         int id = item.getItemId();
 //            buton chat
         if (id == R.id.ChatButton) {
-            Intent intent = new Intent(ParentActivityMain.this, ChatActivity.class);
+            Intent intent = new Intent(ParentActivityMain.this, UserChatActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             return false;

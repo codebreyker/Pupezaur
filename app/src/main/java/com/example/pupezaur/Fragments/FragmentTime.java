@@ -4,26 +4,16 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import com.example.pupezaur.R;
-import com.example.pupezaur.Utils.Message;
-import com.example.pupezaur.Utils.Schedule;
-import com.example.pupezaur.Utils.User;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -35,6 +25,7 @@ import java.util.Date;
 public class FragmentTime extends Fragment {
 
     TextView start_timer, end_timer;
+    ImageButton btn_editHour, btn_deleteHour;
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -51,6 +42,8 @@ public class FragmentTime extends Fragment {
 
         start_timer = getView().findViewById(R.id.start_timer);
         end_timer = getView().findViewById(R.id.end_timer);
+        btn_editHour = getView().findViewById(R.id.btn_editHour);
+        btn_deleteHour = getView().findViewById(R.id.btn_deleteHour);
     }
 
     @Override
@@ -62,7 +55,6 @@ public class FragmentTime extends Fragment {
         View view  = layout.getChildAt(layout.getChildCount()-1);
         start_timer = view.findViewById(R.id.start_timer);
         start_timer.setText(s);
-
     }
 
     public void endHour(String s, LinearLayout layout) {

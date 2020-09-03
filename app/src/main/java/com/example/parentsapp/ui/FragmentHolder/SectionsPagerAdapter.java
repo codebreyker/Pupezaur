@@ -1,4 +1,4 @@
-package com.example.parentsapp.ui.main;
+package com.example.parentsapp.ui.FragmentHolder;
 
 import android.content.Context;
 

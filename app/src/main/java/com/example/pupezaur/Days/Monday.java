@@ -399,22 +399,20 @@ public class Monday extends AppCompatActivity implements TimePickerDialog.OnTime
             databaseReference.push().setValue(schedule);
         }
 
+        if (endTimeString.isEmpty()){
+            placeHolder.removeViewAt(placeHolder.getChildCount()-1);
+//            startTimeString = "1";
+            endTimeString = "1";
+        }
+
+        if (startTimeString.isEmpty()){
+            placeHolder.removeViewAt(placeHolder.getChildCount()-1);
+            startTimeString = "1";
+//            endTimeString = "1";
+        }
+
         //Dont forgot to reset callback
         callback = "for_end_time";
-
-        if (endTimeString.isEmpty() && !scheduleList.isEmpty()){
-            placeHolder.removeViewAt(placeHolder.getChildCount()-1);
-            return;
-//            startTimeString = "1";
-//            endTimeString = "1";
-        }
-//
-        if (startTimeString.isEmpty() && !scheduleList.isEmpty()) {
-            placeHolder.removeViewAt(placeHolder.getChildCount()-1);
-            return;
-//            startTimeString = "1";
-//            endTimeString = "1";
-        }
     }
 
     public void onClick(View view) {

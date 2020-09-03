@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -56,6 +57,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
         TextView start_timer, end_timer;
         RecyclerView recyclerView;
         LinearLayout layoutToAdd;
+        ImageButton btn_deleteHour, btn_editHour;
 
         public ViewHolder(android.view.View itemView) {
             super(itemView);
@@ -63,6 +65,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
             start_timer = itemView.findViewById(R.id.start_timer);
             end_timer = itemView.findViewById(R.id.end_timer);
             layoutToAdd = itemView.findViewById(R.id.layoutToAdd);
+            btn_deleteHour = itemView.findViewById(R.id.btn_deleteHour);
+            btn_editHour = itemView.findViewById(R.id.btn_editHour);
         }
     }
 
