@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Astrid Swim</string>
+
+    <string name="hour">Ore</string>
+    <string name="students">Elevi</string>
+
+    <string name="yes">Da</string>
+    <string name="cancel">Anulare</string>
+    <string name="error">Eroare</string>
+
+<!--    pagina de setari-->
+    <string name="settings">Setări</string>
+    <string name="language">Limbă</string>
+    <string name="selectLanguage">Selectați limba</string>
+    <string name="restartApp">Restartați aplicația</string>
+    <string name="darkMode">Mod nocturn</string>
+    <string name="notifications">Notificări</string>
+
+    <!--    timepicker-->
+    <string name="startTime">Ora de început</string>
+    <string name="endTime">Ora de sfârșit</string>
+
+<!--    chat-->
+    <string name="type_a_message">Scrie un mesaj</string>
+    <string name="you">Dvs.</string>
+    <string name="deleteMessage">Ștergeți mesajul?</string>
+    <string name="messageDeleted">Mesaj șters</string>
+    <string name="messageNotDeleted">Mesajul nu a putut fi șters</string>
+    <string name="emptyMsg">Nu puteți trimite un mesaj gol</string>
+    <string name="newMessage">Mesaj nou</string>
+    <string name="delivered">Livrat</string>
+    <string name="seen">Văzut</string>
+
+<!--    register-->
+    <string name="firstName">Prenume </string>
+    <string name="lastName">Nume</string>
+    <string name="registerLogin">Înregistrare / Logare</string>
+    <string name="invalidNumber">Număr de telefon invalid</string>
+    <string name="checkCode">Codul a fost trimis, vă rugăm verificați</string>
+    <string name="emptyCode">Mai întâi scrieți codul de verificare</string>
+    <string name="codeVerif">Verificarea codului</string>
+    <string name="pleaseWaitVerif">Vă rugăm așteptați verificarea codului</string>
+    <string name="validNumber">Scrieți un număr de telefon valid</string>
+    <string name="checkNumber">Verificarea numărului de telefon</string>
+    <string name="waitNumber">Vă rugăm așteptați numărul de înregistrare</string>
+    <string name="validAdmNumber">Scrieți un număr de telefon al adminului valid</string>
+    <string name="codeSent">Codul a fost trimis</string>
+
+<!--    cursuri admin-->
+    <string name="alerDialog_deleteHour">Sunteți sigur că vreți să ștergeți această oră?</string>
+    <string name="courseDeleted">Curs șters</string>
+    <string name="courseNotDeleted">Cursul nu a putut fi șters</string>
+    <string name="selectHour">Selectați ora de început</string>
+
+    <!--    cursuri user-->
+    <string name="unscheduleHour">Doriți să anulați ședința?</string>
+    <string name="unscheduled">Anulare efectuată</string>
+    <string name="nothingDeleted">Nu este nimic de șters</string>
+    <string name="scheduleHour">Doriți să vă programați la această oră?</string>
+    <string name="alreadyScheduled">Sunteți deja programat</string>
+    <string name="scheduled">Programare efectuată</string>
+    <string name="tooMany">Prea mulți</string>
+
+<!--    adauga sau sterge useri, de la admin-->
+    <string name="deleteName">Ștergeți nume?</string>
+    <string name="addName">Adăugați nume?</string>
+    <string name="whatToDo">Ce doriți să faceți?</string>
+    <string name="hasBeenScheduled">V-a programat la ora</string>
+    <string name="hasSchedule">S-a programat la ora</string>
+    <string name="hasBeenUnscheduled">V-a deprogramat de la ora</string>
+    <string name="hasUnschedule">S-a deprogramat de la ora</string>
+    <string name="clearAll">Curăță tot</string>
+    <string name="addAll">Selectează tot</string>
+
+<!--    zilele saptamanii admin-->
+    <string name="m">L</string>
+    <string name="tu">M</string>
+    <string name="w">M</string>
+    <string name="thu">J</string>
+    <string name="f">V</string>
+    <string name="sa">S</string>
+    <string name="su">D</string>
+
+<!--zilele saptamanii user-->
+    <string name="monday">Luni</string>
+    <string name="tuesday">Marți</string>
+    <string name="wednesday">Miercuri</string>
+    <string name="thursday">Joi</string>
+    <string name="friday">Vineri</string>
+    <string name="saturday">Sâmbătă</string>
+    <string name="sunday">Duminică</string>
+
+</resources>

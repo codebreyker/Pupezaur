@@ -1,3 +1,17 @@
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2/'}
+    }
+    dependencies {
+        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:0.12.8'
+    }
+}
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+
+repositories {
+    maven { url 'https://maven.google.com' }
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
@@ -7,8 +21,16 @@ android {
 
     defaultConfig {
         applicationId "com.ProgramApp.astridswim"
+
+        manifestPlaceholders = [
+                onesignal_app_id: '8a706b8f-1717-4761-baa6-dd6c87ca3ea5',
+                // Project number pulled from dashboard, local value is ignored.
+                onesignal_google_project_number: 'REMOTE'
+        ]
+
         minSdkVersion 16
         targetSdkVersion 30
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
 
@@ -29,7 +51,7 @@ android {
 dependencies {
     compile 'com.github.PuffoCyano:Range-Time-Picker-Dialog:v1.4'
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -38,6 +60,9 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'io.socket:socket.io-client:0.6.2'
     implementation 'com.r0adkll:slidableactivity:2.0.6'
+    implementation 'androidx.core:core:1.3.1'
+    implementation 'com.onesignal:OneSignal:3.15.3'
+    implementation 'com.android.support:multidex:1.0.3'
 
     implementation 'com.google.firebase:firebase-auth:19.3.2'
     implementation 'com.google.firebase:firebase-database:19.4.0'
@@ -50,5 +75,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.google.firebase:firebase-messaging:20.2.4'
 
 }

@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="300dp"
-    android:padding="8dp"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/time_box"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        />
 
     <RelativeLayout
         android:layout_width="300dp"
@@ -15,7 +25,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/txt_sender"
             android:layout_marginLeft="5dp"
-            android:textColor="#fff"
+            android:textColor="@color/Black"
             android:textSize="15dp"
             android:textStyle="bold" />
 
@@ -27,7 +37,7 @@
             android:text=""
             android:padding="8dp"
             android:textSize="18dp"
-            android:textColor="#fff"
+            android:textColor="@color/Black"
             android:layout_below="@id/txt_sender"
             android:background="@drawable/background_message_left" />
 
@@ -35,10 +45,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/show_message"
-            android:id="@+id/time_box"
+            android:id="@+id/isSeen"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:gravity="left"
             android:layout_marginLeft="5dp"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            />
 
     </RelativeLayout>
 </RelativeLayout>

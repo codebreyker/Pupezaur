@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Grey"
+    android:orientation="vertical"
+    tools:context="com.example.pupezaur.MainActivities.SettingsActivity">
+
+    <TextView
+        android:id="@+id/txt_language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="changeLanguage"
+        android:padding="10dp"
+        android:text="@string/language"
+        android:textColor="@color/Black"
+        android:textSize="20dp" />
+
+    <Switch
+        android:id="@+id/btn_darkMode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/darkMode"
+        android:textSize="20dp" />
+
+    <Switch
+        android:id="@+id/btn_notifications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/notifications"
+        android:textSize="20dp" />
+
+</LinearLayout>

@@ -11,22 +11,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import java.util.Calendar;
+import com.example.pupezaur.R;
 
 public class TimePickerFragmentEnd extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR_OF_DAY);
-        int minute = c.get(Calendar.MINUTE);
-        return new TimePickerDialog(getActivity(), 3, (TimePickerDialog.OnTimeSetListener) getActivity(), hour, minute, true);
+        return new TimePickerDialog(getActivity(), 3, (TimePickerDialog.OnTimeSetListener) getActivity(), 12, 0, true);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().setTitle("End hour");
+        String endTime = getResources().getString(R.string.endTime);
+        getDialog().setTitle(endTime);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

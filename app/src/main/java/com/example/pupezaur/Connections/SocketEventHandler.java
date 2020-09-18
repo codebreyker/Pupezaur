@@ -1,7 +1,7 @@
 package com.example.pupezaur.Connections;
 
 //import com.example.pupezaur.MainActivities.MainActivity;
-import com.example.pupezaur.Days.Monday;
+import com.example.pupezaur.Days.MondayAdmin;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,8 +15,8 @@ public class SocketEventHandler {
     private String message;
 
     private ConnectionHandler connectionHandler;
-    private Monday mainActivity;
-    public SocketEventHandler(ConnectionHandler connectionHandler, Monday mainActivity) {
+    private MondayAdmin mainActivity;
+    public SocketEventHandler(ConnectionHandler connectionHandler, MondayAdmin mainActivity) {
         this.connectionHandler = connectionHandler;
         this.mainActivity = mainActivity;
     }

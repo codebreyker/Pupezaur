@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,13 +24,10 @@ import java.util.Date;
 public class FragmentTime extends Fragment {
 
     TextView start_timer, end_timer;
-    ImageButton btn_editHour, btn_deleteHour;
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-//        View v = inflater.inflate(R.layout.activity_main, container, false);
         return null;
 
     }
@@ -42,13 +38,12 @@ public class FragmentTime extends Fragment {
 
         start_timer = getView().findViewById(R.id.start_timer);
         end_timer = getView().findViewById(R.id.end_timer);
-        btn_editHour = getView().findViewById(R.id.btn_editHour);
-        btn_deleteHour = getView().findViewById(R.id.btn_deleteHour);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     public void startHour(String s, LinearLayout layout) {

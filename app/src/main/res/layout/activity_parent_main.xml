@@ -1,29 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.parentsapp.MainActivities.ParentActivityMain">
+    tools:context="com.example.parentsapp.MainActivities.UserActivityMain">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/appbar"
+        android:background="@color/gradientBlue">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/White"
-            app:tabTextColor="@color/Black"/>
+            app:tabTextColor="@color/AnotherBlue"
+            app:tabSelectedTextColor="@color/White"
+            app:tabIndicatorColor="@color/White" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_below="@id/appbar"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/appbar"
+        android:id="@+id/time1"/>
+
+</RelativeLayout>

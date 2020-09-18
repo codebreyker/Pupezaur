@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <item
-        android:id="@+id/ChatButton"
+        android:id="@+id/chatButton"
         app:showAsAction="always"
         android:icon="@drawable/ic_chat_btn"
-        android:title="Chat" />
+        android:title="Chat"
+        android:actionLayout="@layout/notification_badge"/>
 
     <item
-        android:title="Settings"
+        android:title="@string/settings"
         app:showAsAction="collapseActionView"
         android:id="@+id/btn_settings"/>
 

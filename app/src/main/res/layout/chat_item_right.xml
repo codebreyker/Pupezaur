@@ -5,6 +5,15 @@
     android:layout_height="wrap_content"
     android:padding="8dp">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/time_box"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
+
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_alignParentEnd="true"
@@ -19,31 +28,32 @@
             android:id="@+id/txt_you"
             android:gravity="right"
             android:layout_marginRight="5dp"
-            android:textColor="@color/BaseTurquoise"
+            android:textColor="@color/Black"
             android:textSize="15dp"
             android:textStyle="bold"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"/>
 
-        <TextView
-            android:id="@+id/show_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_message_right"
-            android:layout_marginRight="5dp"
-            android:text=""
-            android:textColor="#000"
-            android:padding="8dp"
-            android:textSize="18dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/txt_you"
-            android:gravity="right"/>
+            <TextView
+                android:id="@+id/show_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_message_right"
+                android:layout_marginRight="5dp"
+                android:text=""
+                android:textColor="@color/White"
+                android:padding="8dp"
+                android:textSize="18dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/txt_you"
+                android:gravity="right"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/show_message"
-            android:id="@+id/time_box"
+            android:id="@+id/isSeen"
             android:layout_alignParentRight="true"
             android:gravity="right"
             android:layout_marginRight="5dp"

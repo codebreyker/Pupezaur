@@ -8,16 +8,20 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.example.parentsapp.Fragments.FridayUser;
+import com.example.parentsapp.Fragments.MondayUser;
+import com.example.parentsapp.Fragments.SaturdayUser;
+import com.example.parentsapp.Fragments.SundayUser;
+import com.example.parentsapp.Fragments.ThursdayUser;
+import com.example.parentsapp.Fragments.TuesdayUser;
+import com.example.parentsapp.Fragments.WednesdayUser;
+
 import com.example.pupezaur.R;
 
-/**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2,  R.string.tab_text_3,  R.string.tab_text_4,  R.string.tab_text_5,  R.string.tab_text_6,  R.string.tab_text_7};
+    private static final int[] TAB_TITLES = new int[]{R.string.monday, R.string.tuesday,  R.string.wednesday,  R.string.thursday,  R.string.friday,  R.string.saturday,  R.string.sunday};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -29,20 +33,34 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1);
+//        return PlaceholderFragment.newInstance(position + 1);
 
-//        Fragment fragment = null;
-//        switch (position) {
-//            case 0:
-//                fragment = new FragmentTime();
-//                break;
-//            case 1:
-//                fragment = new ChatFragment();
-//                break;
-//
-//        }
-//        return fragment;
+        Fragment fragment = null;
 
+            switch (position) {
+                case 0:
+                    fragment = new MondayUser();
+                    break;
+                case 1:
+                    fragment = new TuesdayUser();
+                    break;
+                case 2:
+                    fragment = new WednesdayUser();
+                    break;
+                case 3:
+                    fragment = new ThursdayUser();
+                    break;
+                case 4:
+                    fragment = new FridayUser();
+                    break;
+                case 5:
+                    fragment = new SaturdayUser();
+                    break;
+                case 6:
+                    fragment = new SundayUser();
+                    break;
+            }
+            return fragment;
     }
 
     @Nullable

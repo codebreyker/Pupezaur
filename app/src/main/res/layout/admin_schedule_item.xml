@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/relativeLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutToAdd"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_below="@+id/time">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/schedule_background"
+            android:id="@+id/linearLayout_delete">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/timetime_layout"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/txt_hours"
+                    android:text="@string/hour"
+                    android:textSize="15dp"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/Black"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/AnotherBlue"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout_edit">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/start_timer"
+                        android:textColor="@color/Black"
+                        android:layout_weight="1"
+                        android:textSize="19dp"
+                        android:gravity="right"/>
+                    <TextView
+                        android:id="@+id/end_timer"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/Black"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:textSize="19dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/linear_text"
+                android:layout_weight="2">
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/AnotherBlue"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_students"
+                        android:textColor="@color/Black"
+                        android:textSize="15dp"
+                        android:text="@string/students"
+                        android:gravity="center_horizontal"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/AnotherBlue"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/txt_nameToAdd"
+                        android:gravity="center"
+                        android:textColor="@color/Black"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+

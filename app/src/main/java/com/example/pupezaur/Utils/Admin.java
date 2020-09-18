@@ -3,46 +3,32 @@ package com.example.pupezaur.Utils;
 public class Admin extends User {
 
     String uid;
-    String aid;
     String name;
     String phoneNumber;
     String adminPhoneNumber;
-    String users, chats;
+    String notificationKey;
     boolean isAdmin;
 
-//    public Admin(String aid, String uid, String name, String phoneNumber, String adminPhoneNumber, boolean isAdmin, String users, String chats) {
-//        this.users = users;
-//        this.chats = chats;
-//        this.aid = aid;
-//        this.uid = uid;
-//        this.name = name;
-//        this.phoneNumber = phoneNumber;
-//        this.adminPhoneNumber = adminPhoneNumber;
-//        this.isAdmin = isAdmin;
-//    }
+    public Admin(String uid, String name, String phoneNumber, String adminPhoneNumber, boolean isAdmin) {
+        this.uid = uid;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.adminPhoneNumber = adminPhoneNumber;
+        this.isAdmin = isAdmin;
+    }
 
     public Admin() {
     }
 
-    public String getUsers() {
-        return users;
+    @Override
+    public String getNotificationKey() {
+        return notificationKey;
     }
 
-    public void setUsers(String users) {
-        this.users = users;
+    @Override
+    public void setNotificationKey(String notificationKey) {
+        this.notificationKey = notificationKey;
     }
-
-    public String getChats() {
-        return chats;
-    }
-
-    public void setChats(String chats) {
-        this.chats = chats;
-    }
-
-    public String getAid() { return aid; }
-
-    public void setAid(String aid) { this.aid = aid; }
 
     public String getUid() { return uid; }
 
@@ -66,38 +52,13 @@ public class Admin extends User {
 
     @Override
     public String toString() {
-        return uid +
-                    "isAdmin='" + isAdmin + '\'' +
-                    ", adminId=" + uid + '\'' +
-                    ", adminName=" + name + '\'' +
-                    ", adminPhoneNumber=" + adminPhoneNumber + '\'' +
-                    "Users{" +
-//                            User.class +
-                        ", uid{" + uid + '\'' +
-                        ", name=" + name + '\'' +
-                        ", phoneNumber=" + phoneNumber + '\'' +
-                        ", adminPhoneNumber=" + adminPhoneNumber + '\'' +
-                        ", isAdmin=" + isAdmin + '\'' +
-                    "Chats{" +
-                        Message.class +
-//                "Message =" + '\'' +
-//                ", Name =" + '\'' +
-//                          "Phone Number ='" + '\'' +
+        return "Admin{" +
+                "uid='" + uid + '\'' +
+                ", name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", notificationKey='" + notificationKey + '\'' +
+                ", isAdmin=" + isAdmin +
                 '}';
     }
 }
-
-//
-//                ", phoneNumber='" + adminPhoneNumber+ '\'' +
-//
-//                "uid='" + uid + '\'' +
-//                ", phoneNumber='" + phoneNumber + '\'' +
-//                '}';
-
-
-//    public Message() {}
-//
-//    public Message(String message, String name) {
-//        this.message = message;
-//        this.name = name;
 

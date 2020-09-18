@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
     android:theme="@android:style/Animation.Activity"
     style="@style/CustomActivityAnimation"
-    tools:context=".Days.Monday">
+    tools:context=".Days.MondayAdmin"
+    android:background="@color/Grey">
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -18,13 +18,14 @@
     <FrameLayout
         android:id="@+id/main_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:background="@color/Grey"/>
     </ScrollView>
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/BaseTurquoise"
+        android:background="@color/gradientBlue"
         android:theme="@style/AppTheme.AppBarOverlay">
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -33,8 +34,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/days_relativelayout"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:padding="5dp">
+        android:layout_alignParentLeft="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,75 +42,146 @@
         android:orientation="horizontal"
         android:id="@+id/linear_layout_weekdays">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <TextView
             android:id="@+id/btn_monday"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:tooltipText="Monday"
-            app:backgroundTint="@color/White"
-            android:src="@drawable/ic_button_monday_black"
-            app:fabSize="mini" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/btns_days_white"
+            android:gravity="center_horizontal"
+            android:text="@string/m"
+            android:textSize="0.2in"/>
+        <TextView
             android:id="@+id/btn_tuesday"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:tooltipText="Tuesday"
-            app:backgroundTint="@color/White"
-            android:src="@drawable/ic_button_tuandthu_black"
-            app:fabSize="mini" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/btns_days_white"
+            android:gravity="center_horizontal"
+            android:text="@string/tu"
+            android:textSize="0.2in"/>
+        <TextView
             android:id="@+id/btn_wednesday"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:tooltipText="Wednesday"
-            app:backgroundTint="@color/White"
-            android:src="@drawable/ic_button_wednesday_black"
-            app:fabSize="mini" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/btns_days_white"
+            android:gravity="center_horizontal"
+            android:text="@string/w"
+            android:textSize="0.2in"/>
+        <TextView
             android:id="@+id/btn_thursday"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:tooltipText="Thursday"
-            app:backgroundTint="@color/White"
-            android:src="@drawable/ic_button_tuandthu_black"
-            app:fabSize="mini" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/btns_days_white"
+            android:gravity="center_horizontal"
+            android:text="@string/thu"
+            android:textSize="0.2in"/>
+        <TextView
             android:id="@+id/btn_friday"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:tooltipText="Friday"
-            app:backgroundTint="@color/White"
-            android:src="@drawable/ic_button_friday_black"
-            app:fabSize="mini" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/btns_days_white"
+            android:gravity="center_horizontal"
+            android:text="@string/f"
+            android:textSize="0.2in"/>
+        <TextView
             android:id="@+id/btn_saturday"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:tooltipText="Saturday"
-            app:backgroundTint="@color/White"
-            android:src="@drawable/ic_button_satandsun_black"
-            app:fabSize="mini" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/btns_days_white"
+            android:gravity="center_horizontal"
+            android:text="@string/sa"
+            android:textSize="0.2in"/>
+        <TextView
             android:id="@+id/btn_sunday"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:tooltipText="Sunday"
-            app:backgroundTint="@color/White"
-            android:src="@drawable/ic_button_satandsun_black"
-            app:fabSize="mini" />
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/btns_days_white"
+            android:gravity="center_horizontal"
+            android:text="@string/su"
+            android:textSize="0.2in"/>
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/btn_monday"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:tooltipText="Monday"-->
+<!--            app:backgroundTint="@color/White"-->
+<!--            android:src="@drawable/ic_button_monday_black"-->
+<!--            app:fabSize="mini" />-->
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/btn_tuesday"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:tooltipText="Tuesday"-->
+<!--            app:backgroundTint="@color/White"-->
+<!--            android:src="@drawable/ic_button_tuandthu_black"-->
+<!--            app:fabSize="mini" />-->
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/btn_wednesday"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:tooltipText="Wednesday"-->
+<!--            app:backgroundTint="@color/White"-->
+<!--            android:src="@drawable/ic_button_wednesday_black"-->
+<!--            app:fabSize="mini" />-->
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/btn_thursday"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:tooltipText="Thursday"-->
+<!--            app:backgroundTint="@color/White"-->
+<!--            android:src="@drawable/ic_button_tuandthu_black"-->
+<!--            app:fabSize="mini" />-->
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/btn_friday"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:tooltipText="Friday"-->
+<!--            app:backgroundTint="@color/White"-->
+<!--            android:src="@drawable/ic_button_friday_black"-->
+<!--            app:fabSize="mini" />-->
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/btn_saturday"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:tooltipText="Saturday"-->
+<!--            app:backgroundTint="@color/White"-->
+<!--            android:src="@drawable/ic_button_satandsun_black"-->
+<!--            app:fabSize="mini" />-->
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/btn_sunday"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:tooltipText="Sunday"-->
+<!--            app:backgroundTint="@color/White"-->
+<!--            android:src="@drawable/ic_button_satandsun_black"-->
+<!--            app:fabSize="mini" />-->
 
     </LinearLayout>
 </RelativeLayout>
@@ -123,17 +194,10 @@
         android:layout_gravity="end|bottom"
         android:layout_margin="15dp"
         android:elevation="10dp"
-        app:backgroundTint="@color/BaseTurquoise"
+        app:backgroundTint="@color/gradientBlue"
         android:src="@drawable/ic_button_add"
         android:id="@+id/btn_add"
         android:tooltipText="Add course"
-        android:onClick="onClick"
         android:layout_alignParentRight="true" />
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </RelativeLayout>

@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:targetApi="m">
+        tools:targetApi="m"
+        android:name=".PhoneConnection.OfflineActivity">
 
         <!-- pagina de register -->
         <activity
@@ -30,43 +31,41 @@
             </intent-filter>
         </activity>
 
-        <!-- pagina de login -->
-
         <!-- pagina principala -->
         <activity
-            android:name=".Days.Monday"
+            android:name=".Days.MondayAdmin"
             android:label="Astrid Swim"></activity>
         <activity
-            android:name=".Days.Tuesday"
+            android:name=".Days.TuesdayAdmin"
             android:label="Astrid Swim"></activity>
         <activity
-            android:name=".Days.Wednesday"
+            android:name=".Days.WednesdayAdmin"
             android:label="Astrid Swim"></activity>
         <activity
-            android:name=".Days.Thursday"
+            android:name=".Days.ThursdayAdmin"
             android:label="Astrid Swim"></activity>
         <activity
-            android:name=".Days.Friday"
+            android:name=".Days.FridayAdmin"
             android:label="Astrid Swim"></activity>
         <activity
-            android:name=".Days.Saturday"
+            android:name=".Days.SaturdayAdmin"
             android:label="Astrid Swim"></activity>
         <activity
-            android:name=".Days.Sunday"
+            android:name=".Days.SundayAdmin"
             android:label="Astrid Swim"></activity>
 
         <!-- pagina de chat -->
         <activity
-            android:name=".MainActivities.ChatActivity"
+            android:name=".MainActivities.AdminChatActivity"
             android:label="Chat"
-            android:parentActivityName=".Days.Monday"
+            android:parentActivityName=".Days.MondayAdmin"
             android:windowSoftInputMode="adjustResize" />
 
         <!-- pagina de setari -->
         <activity
             android:name=".MainActivities.SettingsActivity"
-            android:label="Settings"
-            android:parentActivityName=".Days.Monday" />
+            android:label="@string/settings"
+            android:parentActivityName=".Days.MondayAdmin" />
 
 <!--        Parent app-->
 
@@ -75,11 +74,10 @@
             android:name="com.example.parentsapp.PhoneConnections.UserPhoneRegister"
             android:label="Astrid Swim">
 
-
         </activity>
 <!--        pagina principala-->
         <activity
-            android:name="com.example.parentsapp.MainActivities.ParentActivityMain"
+            android:name="com.example.parentsapp.MainActivities.UserActivityMain"
             android:label="Astrid Swim">
         </activity>
 <!--        pagina de chat-->
@@ -88,9 +86,18 @@
             android:label="Chat">
         </activity>
 
+        <service
+            android:name=".Notifications.NotificationExtender"
+        android:permission="android.permission.BIND_JOB_SERVICE"
+        android:exported="false">
+        <intent-filter>
+            <action android:name="com.onesignal.NotificationExtender" />
+        </intent-filter>
+    </service>
+
     </application>
 
-
-
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
 </manifest>

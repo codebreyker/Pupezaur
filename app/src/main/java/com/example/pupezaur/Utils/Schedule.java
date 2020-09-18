@@ -1,16 +1,36 @@
 package com.example.pupezaur.Utils;
 
+import java.util.List;
+
 public class Schedule {
     String id;
     String startHour;
     String endHour;
     String key;
+    List <String> namesList;
+    List <String> userIds;
 
     public Schedule() {}
 
     public Schedule(String startHour, String endHour) {
         this.startHour = startHour;
         this.endHour = endHour;
+    }
+
+    public List<String> getUserIds() {
+        return userIds;
+    }
+
+    public void setUserIds(List<String> userIds) {
+        this.userIds = userIds;
+    }
+
+    public List<String> getNamesList() {
+        return namesList;
+    }
+
+    public void setNamesList(List<String> namesList) {
+        this.namesList = namesList;
     }
 
     public String getId() {
@@ -52,6 +72,7 @@ public class Schedule {
                 ", startHour='" + startHour + '\'' +
                 ", endHour='" + endHour + '\'' +
                 ", key='" + key + '\'' +
+                ", namesList=" + namesList +
                 '}';
     }
 }

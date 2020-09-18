@@ -1,4 +1,19 @@
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2/'}
+    }
+    dependencies {
+        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.12.8, 0.99.99]'
+    }
+}
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+
+repositories {
+    maven { url 'https://maven.google.com' }
+}
+
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 30
@@ -6,8 +21,14 @@ android {
 
     defaultConfig {
         applicationId "com.example.parentsapp"
+        manifestPlaceholders = [
+                onesignal_app_id: '8a706b8f-1717-4761-baa6-dd6c87ca3ea5',
+                // Project number pulled from dashboard, local value is ignored.
+                onesignal_google_project_number: 'REMOTE'
+        ]
         minSdkVersion 16
         targetSdkVersion 30
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
 
@@ -25,8 +46,12 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.firebase:firebase-messaging:20.2.4'
     testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation 'com.onesignal:OneSignal:3.15.3'
+    implementation 'com.android.support:multidex:1.0.3'
 
 }

@@ -6,16 +6,36 @@ public class Message {
     String message;
     String name;
     String key;
+    String userId;
+    private boolean isSeen;
 
     long messageTime;
 
     public Message() {}
 
-    public Message(String message, String name) {
+    public Message(String message, String name, String userId, boolean isSeen) {
         this.message = message;
         this.name = name;
+        this.userId = userId;
+        this.isSeen = isSeen;
 
         messageTime = new Date().getTime();
+    }
+
+    public boolean isSeen() {
+        return isSeen;
+    }
+
+    public void setSeen(boolean seen) {
+        isSeen = seen;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getMessage() {
@@ -48,10 +68,13 @@ public class Message {
 
     @Override
     public String toString() {
-        return "Chats{" +
+        return "Message{" +
                 "message='" + message + '\'' +
                 ", name='" + name + '\'' +
                 ", key='" + key + '\'' +
+                ", userId='" + userId + '\'' +
+                ", isSeen=" + isSeen +
+                ", messageTime=" + messageTime +
                 '}';
     }
 }

@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#c6c6c6"
+    android:background="@color/ChatBlue"
     app:layout_constraintBottom_toBottomOf="@+id/toolbar"
     android:id="@+id/message_activity"
     android:theme="@android:style/Animation.Activity"
     style="@style/CustomActivityAnimation"
-    tools:context=".MainActivities.ChatActivity">
+    tools:context=".MainActivities.AdminChatActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -33,16 +33,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:id="@+id/lm">
+            android:id="@+id/lm"
+            android:focusableInTouchMode="false">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/text_send"
             android:background="@android:color/transparent"
-            android:hint="Type a message"
+            android:hint="@string/type_a_message"
             android:layout_toLeftOf="@id/btn_send"
-            android:layout_weight="1" />
+            android:layout_weight="1"/>
 
         <ImageButton
             android:layout_width="40dp"
